@@ -1,330 +1,355 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Book, 
-  Youtube, 
-  ArrowUpRight,
-  ChevronRight,
-  Menu,
-  X,
-  Mail,
-  Twitter,
-  Instagram
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. William C. Roach | Theological Discourse</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+        }
 
-const App = () => {
-  const [activeTab, setActiveTab] = useState('home');
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+        .selection-white::selection {
+            background: white;
+            color: black;
+        }
 
-  // Handle scroll effects for the navigation bar
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+        /* Smooth tab transitions */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
 
-  // Close mobile menu on tab change
-  const navigate = (tab) => {
-    setActiveTab(tab);
-    setMobileMenuOpen(false);
-    window.scrollTo(0, 0);
-  };
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="selection-white">
 
-  const books = [
-    {
-      title: "Defending Inerrancy",
-      tag: "Essential",
-      description: "Affirming the high view of Scripture in a postmodern world.",
-      year: "2011",
-      link: "#"
-    },
-    {
-      title: "Hermeneutics as Epistemology",
-      tag: "Academic",
-      description: "A philosophical inquiry into how we interpret sacred texts.",
-      year: "2015",
-      link: "#"
-    },
-    {
-      title: "Sola Fide",
-      tag: "Doctrine",
-      description: "Exploring the bedrock of the Reformation for today.",
-      year: "2020",
-      link: "#"
-    }
-  ];
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 bg-transparent py-8">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <div class="flex flex-col cursor-pointer group" onclick="navigate('home')">
+                <span class="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none text-white">William C. Roach</span>
+                <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 group-hover:text-white transition-colors">Theological Discourse</span>
+            </div>
 
-  const videos = [
-    {
-      id: "v1",
-      title: "The Crisis of Authority",
-      views: "12K",
-      thumbnail: "https://images.unsplash.com/photo-1585829365234-781fcd69186b?q=80&w=600&auto=format&fit=crop"
-    },
-    {
-      id: "v2",
-      title: "Why Hermeneutics Matters",
-      views: "8.5K",
-      thumbnail: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600&auto=format&fit=crop"
-    },
-    {
-      id: "v3",
-      title: "Classical vs Presupposition",
-      views: "24K",
-      thumbnail: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=600&auto=format&fit=crop"
-    }
-  ];
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-10">
+                <button onclick="navigate('home')" class="nav-link text-[11px] font-black uppercase tracking-widest transition-all relative pb-1 text-white border-b-2 border-white" data-tab="home">home</button>
+                <button onclick="navigate('videos')" class="nav-link text-[11px] font-black uppercase tracking-widest transition-all relative pb-1 text-zinc-500 hover:text-white" data-tab="videos">videos</button>
+                <button onclick="navigate('books')" class="nav-link text-[11px] font-black uppercase tracking-widest transition-all relative pb-1 text-zinc-500 hover:text-white" data-tab="books">books</button>
+                <button onclick="navigate('about')" class="nav-link text-[11px] font-black uppercase tracking-widest transition-all relative pb-1 text-zinc-500 hover:text-white" data-tab="about">about</button>
+            </div>
 
-  return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#e5e5e5] font-sans selection:bg-white selection:text-black">
-      
-      {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-black/95 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-8'}`}>
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <div className="flex flex-col cursor-pointer group" onClick={() => navigate('home')}>
-            <span className="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none text-white">William C. Roach</span>
-            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 group-hover:text-white transition-colors">Theological Discourse</span>
-          </div>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-10">
-            {['home', 'videos', 'books', 'about'].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => navigate(tab)}
-                className={`text-[11px] font-black uppercase tracking-widest transition-all relative pb-1 ${activeTab === tab ? 'text-white border-b-2 border-white' : 'text-zinc-500 hover:text-white'}`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-4">
-            <button className="hidden sm:block border border-white/20 hover:border-white px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] transition-all">
-              Subscribe
-            </button>
-            <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+            <div class="flex items-center gap-4">
+                <button class="hidden sm:block border border-white/20 hover:border-white px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] transition-all">
+                    Subscribe
+                </button>
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" id="menu-icon"></i>
+                </button>
+            </div>
         </div>
-      </nav>
+    </nav>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center gap-8">
-          {['home', 'videos', 'books', 'about'].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => navigate(tab)}
-              className="text-4xl font-black uppercase tracking-tighter italic text-white"
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-      )}
-
-      <main className="pt-40">
-        {activeTab === 'home' && (
-          <div className="max-w-7xl mx-auto px-6">
-            
-            {/* Hero Section */}
-            <section className="mb-32 border-l border-white/10 pl-8 md:pl-16">
-              <div className="max-w-4xl">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="h-[1px] w-12 bg-white/30"></div>
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400">Pursuing Objective Truth</span>
-                </div>
-                <h1 className="text-6xl md:text-[9rem] font-black tracking-tighter mb-8 leading-[0.85] text-white uppercase italic">
-                  Defend <br />
-                  <span className="not-italic">The Word.</span>
-                </h1>
-                <p className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-2xl leading-relaxed font-light">
-                  Academic rigor meets biblical conviction. Bridging the gap between the philosophical academy and the local pulpit.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-6">
-                  <button 
-                    onClick={() => navigate('books')}
-                    className="bg-white text-black px-12 py-5 text-sm font-black uppercase tracking-widest hover:bg-transparent hover:text-white border border-white transition-all flex items-center justify-center gap-3"
-                  >
-                    Latest Publications <ArrowUpRight size={18} />
-                  </button>
-                </div>
-              </div>
-            </section>
-
-            {/* Featured Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-px bg-white/10 border border-white/10">
-              
-              <div 
-                className="md:col-span-8 bg-[#0a0a0a] p-12 hover:bg-[#0f0f0f] transition-colors cursor-pointer"
-                onClick={() => navigate('videos')}
-              >
-                <div className="flex items-center justify-between mb-20">
-                   <Youtube className="text-white" size={32} strokeWidth={1.5} />
-                   <span className="text-[10px] font-black tracking-[0.3em] uppercase text-zinc-500">The Video Archive</span>
-                </div>
-                <h2 className="text-4xl font-black uppercase tracking-tighter mb-4 italic text-white">Lecture Series</h2>
-                <p className="text-zinc-500 max-w-sm mb-12">Detailed breakdowns of classical apologetics and contemporary theological crises.</p>
-                <div className="flex items-center gap-2 text-white font-black text-[10px] uppercase tracking-[0.2em]">
-                  Explore Gallery <ChevronRight size={14} />
-                </div>
-              </div>
-
-              <div 
-                className="md:col-span-4 bg-[#0a0a0a] p-12 hover:bg-[#0f0f0f] transition-colors cursor-pointer"
-                onClick={() => navigate('books')}
-              >
-                <div className="flex items-center justify-between mb-20">
-                   <Book className="text-white" size={32} strokeWidth={1.5} />
-                   <span className="text-[10px] font-black tracking-[0.3em] uppercase text-zinc-500">Print</span>
-                </div>
-                <h2 className="text-4xl font-black uppercase tracking-tighter mb-4 text-white">Books</h2>
-                <p className="text-zinc-500 mb-12 italic">From Inerrancy to Epistemology.</p>
-                <div className="flex items-center gap-2 text-white font-black text-[10px] uppercase tracking-[0.2em]">
-                  View Catalog <ChevronRight size={14} />
-                </div>
-              </div>
-
-            </div>
-
-            {/* Recent Content */}
-            <section className="mt-32 mb-40">
-              <div className="flex items-center justify-between border-b border-white/10 pb-6 mb-12">
-                 <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-white">Recent Dispatches</h3>
-                 <button onClick={() => navigate('videos')} className="text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-white transition-colors">View All</button>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                {videos.map((video, i) => (
-                  <div key={i} className="group cursor-pointer">
-                    <div className="relative aspect-video mb-6 overflow-hidden bg-zinc-900 border border-white/5">
-                       <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 opacity-50 group-hover:opacity-100" />
-                       <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all"></div>
-                    </div>
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-2 block">Apologetics • {video.views} Views</span>
-                    <h4 className="text-2xl font-black uppercase tracking-tight group-hover:italic transition-all text-white">{video.title}</h4>
-                  </div>
-                ))}
-              </div>
-            </section>
-          </div>
-        )}
-
-        {/* Tab Content Views */}
-        {(activeTab === 'videos' || activeTab === 'books' || activeTab === 'about') && (
-          <div className="max-w-7xl mx-auto px-6 pb-40">
-            <h2 className="text-6xl md:text-[8rem] font-black tracking-tighter uppercase italic leading-none mb-20 text-white">{activeTab}</h2>
-            
-            {activeTab === 'books' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
-                {books.map((book, i) => (
-                  <div key={i} className="bg-black p-12 hover:bg-[#0d0d0d] transition-colors group">
-                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-12 block">{book.tag} — {book.year}</span>
-                    <h3 className="text-3xl font-black uppercase mb-4 leading-tight text-white group-hover:italic transition-all">{book.title}</h3>
-                    <p className="text-zinc-400 mb-12 font-light leading-relaxed">{book.description}</p>
-                    <a href={book.link} className="text-[10px] font-black uppercase tracking-widest flex items-center gap-2 border-b border-white pb-1 w-fit text-white">Buy on Amazon</a>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {activeTab === 'videos' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                {videos.concat(videos).map((video, i) => (
-                  <div key={i} className="group border-b border-white/10 pb-12">
-                    <div className="aspect-video bg-zinc-900 mb-6 relative overflow-hidden">
-                      <img src={video.thumbnail} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" alt={video.title} />
-                    </div>
-                    <h3 className="text-3xl font-black uppercase tracking-tighter mb-4 text-white group-hover:italic transition-all">{video.title}</h3>
-                    <p className="text-zinc-500 mb-6">A deep dive lecture exploring the historical context and contemporary relevance of this theological framework.</p>
-                    <button className="text-[10px] font-black uppercase tracking-widest border border-white/20 px-6 py-3 hover:bg-white hover:text-black transition-all">Watch Now</button>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {activeTab === 'about' && (
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-20">
-                <div className="md:col-span-8">
-                  <p className="text-3xl md:text-4xl font-light leading-snug text-zinc-300 italic mb-12">
-                    "Dr. William C. Roach stands at the intersection of historical Reformed theology and classical philosophy."
-                  </p>
-                  <div className="space-y-6 text-zinc-400 text-lg leading-loose font-light">
-                    <p>
-                      William C. Roach (Ph.D., Southeastern Baptist Theological Seminary) is President of the International Society of Christian Apologetics. He is a prolific author and lecturer focused on the doctrine of inerrancy and the philosophical foundations of Christian faith.
-                    </p>
-                    <p>
-                      Currently serving as senior pastor and adjunct professor, he spends his time training the next generation of defenders of the faith. His work is primarily focused on the defense of the Bible as the infallible Word of God against modern and postmodern critiques.
-                    </p>
-                  </div>
-                </div>
-                <div className="md:col-span-4">
-                  <div className="border border-white/10 p-8 space-y-8 sticky top-32">
-                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white">Focus Areas</span>
-                    <ul className="space-y-4 text-xs font-bold uppercase tracking-widest text-zinc-500">
-                      <li className="flex items-center gap-3 text-zinc-300"><ChevronRight size={14} className="text-white"/> Biblical Inerrancy</li>
-                      <li className="flex items-center gap-3 text-zinc-300"><ChevronRight size={14} className="text-white"/> Classical Apologetics</li>
-                      <li className="flex items-center gap-3 text-zinc-300"><ChevronRight size={14} className="text-white"/> Hermeneutics</li>
-                      <li className="flex items-center gap-3 text-zinc-300"><ChevronRight size={14} className="text-white"/> Reformed Theology</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-black border-t border-white/10 pt-32 pb-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-32">
-            <div className="md:col-span-2">
-              <div className="text-3xl font-black uppercase tracking-tighter mb-6 text-white">William C. Roach</div>
-              <p className="text-zinc-500 max-w-sm leading-relaxed text-sm font-medium">
-                Pursuing the light of objective truth in an age of subjective darkness. Classical theology for the modern mind.
-              </p>
-            </div>
-            
-            <div className="flex flex-col gap-6">
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white">Sitemap</span>
-              <div className="flex flex-col gap-3 text-xs font-bold uppercase tracking-widest text-zinc-500">
-                <button onClick={() => navigate('home')} className="text-left hover:text-white transition-colors w-fit">Home</button>
-                <button onClick={() => navigate('videos')} className="text-left hover:text-white transition-colors w-fit">Lectures</button>
-                <button onClick={() => navigate('books')} className="text-left hover:text-white transition-colors w-fit">Bibliography</button>
-                <button onClick={() => navigate('about')} className="text-left hover:text-white transition-colors w-fit">About</button>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-6">
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white">Connect</span>
-              <div className="flex flex-col gap-4 text-zinc-500">
-                <a href="#" className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest hover:text-white transition-colors">
-                  <Youtube size={16} /> YouTube
-                </a>
-                <a href="#" className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest hover:text-white transition-colors">
-                  <Twitter size={16} /> Twitter / X
-                </a>
-                <a href="#" className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest hover:text-white transition-colors">
-                  <Mail size={16} /> Newsletter
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/5 gap-8">
-            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-700">
-              © 2026 William C. Roach. All Rights Reserved.
-            </div>
-            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-700">
-              Built by <a href="https://ladmedia.co" target="_blank" rel="noopener noreferrer" className="text-white hover:text-zinc-400 transition-all border-b border-white/20 pb-0.5">LAD MEDIA</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-black hidden flex-col items-center justify-center gap-8">
+        <button onclick="navigate('home')" class="text-4xl font-black uppercase tracking-tighter italic text-white">home</button>
+        <button onclick="navigate('videos')" class="text-4xl font-black uppercase tracking-tighter italic text-white">videos</button>
+        <button onclick="navigate('books')" class="text-4xl font-black uppercase tracking-tighter italic text-white">books</button>
+        <button onclick="navigate('about')" class="text-4xl font-black uppercase tracking-tighter italic text-white">about</button>
+        <button onclick="toggleMobileMenu()" class="absolute top-8 right-6 text-white">
+            <i data-lucide="x"></i>
+        </button>
     </div>
-  );
-};
 
-export default App;
+    <main class="pt-40">
+        <!-- Home Tab -->
+        <div id="home" class="tab-content active">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Hero Section -->
+                <section class="mb-32 border-l border-white/10 pl-8 md:pl-16">
+                    <div class="max-w-4xl">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="h-[1px] w-12 bg-white/30"></div>
+                            <span class="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400">Pursuing Objective Truth</span>
+                        </div>
+                        <h1 class="text-6xl md:text-[9rem] font-black tracking-tighter mb-8 leading-[0.85] text-white uppercase italic">
+                            Defend <br />
+                            <span class="not-italic">The Word.</span>
+                        </h1>
+                        <p class="text-xl md:text-2xl text-zinc-400 mb-12 max-w-2xl leading-relaxed font-light">
+                            Academic rigor meets biblical conviction. Bridging the gap between the philosophical academy and the local pulpit.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-6">
+                            <button onclick="navigate('books')" class="bg-white text-black px-12 py-5 text-sm font-black uppercase tracking-widest hover:bg-transparent hover:text-white border border-white transition-all flex items-center justify-center gap-3">
+                                Latest Publications <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Featured Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-px bg-white/10 border border-white/10">
+                    <div class="md:col-span-8 bg-[#0a0a0a] p-12 hover:bg-[#0f0f0f] transition-colors cursor-pointer" onclick="navigate('videos')">
+                        <div class="flex items-center justify-between mb-20">
+                            <i data-lucide="youtube" class="text-white w-8 h-8"></i>
+                            <span class="text-[10px] font-black tracking-[0.3em] uppercase text-zinc-500">The Video Archive</span>
+                        </div>
+                        <h2 class="text-4xl font-black uppercase tracking-tighter mb-4 italic text-white">Lecture Series</h2>
+                        <p class="text-zinc-500 max-w-sm mb-12">Detailed breakdowns of classical apologetics and contemporary theological crises.</p>
+                        <div class="flex items-center gap-2 text-white font-black text-[10px] uppercase tracking-[0.2em]">
+                            Explore Gallery <i data-lucide="chevron-right" class="w-3 h-3"></i>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-4 bg-[#0a0a0a] p-12 hover:bg-[#0f0f0f] transition-colors cursor-pointer" onclick="navigate('books')">
+                        <div class="flex items-center justify-between mb-20">
+                            <i data-lucide="book" class="text-white w-8 h-8"></i>
+                            <span class="text-[10px] font-black tracking-[0.3em] uppercase text-zinc-500">Print</span>
+                        </div>
+                        <h2 class="text-4xl font-black uppercase tracking-tighter mb-4 text-white">Books</h2>
+                        <p class="text-zinc-500 mb-12 italic">From Inerrancy to Epistemology.</p>
+                        <div class="flex items-center gap-2 text-white font-black text-[10px] uppercase tracking-[0.2em]">
+                            View Catalog <i data-lucide="chevron-right" class="w-3 h-3"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Dispatches -->
+                <section class="mt-32 mb-40">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-6 mb-12">
+                        <h3 class="text-[10px] font-black uppercase tracking-[0.5em] text-white">Recent Dispatches</h3>
+                        <button onclick="navigate('videos')" class="text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-white transition-colors">View All</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                        <div class="group cursor-pointer">
+                            <div class="relative aspect-video mb-6 overflow-hidden bg-zinc-900 border border-white/5">
+                                <img src="https://images.unsplash.com/photo-1585829365234-781fcd69186b?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 opacity-50 group-hover:opacity-100" alt="Video">
+                                <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all"></div>
+                            </div>
+                            <span class="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-2 block">Apologetics • 12K Views</span>
+                            <h4 class="text-2xl font-black uppercase tracking-tight group-hover:italic transition-all text-white">The Crisis of Authority</h4>
+                        </div>
+                        <div class="group cursor-pointer">
+                            <div class="relative aspect-video mb-6 overflow-hidden bg-zinc-900 border border-white/5">
+                                <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 opacity-50 group-hover:opacity-100" alt="Video">
+                                <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all"></div>
+                            </div>
+                            <span class="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-2 block">Apologetics • 8.5K Views</span>
+                            <h4 class="text-2xl font-black uppercase tracking-tight group-hover:italic transition-all text-white">Why Hermeneutics Matters</h4>
+                        </div>
+                        <div class="group cursor-pointer">
+                            <div class="relative aspect-video mb-6 overflow-hidden bg-zinc-900 border border-white/5">
+                                <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 opacity-50 group-hover:opacity-100" alt="Video">
+                                <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all"></div>
+                            </div>
+                            <span class="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-2 block">Apologetics • 24K Views</span>
+                            <h4 class="text-2xl font-black uppercase tracking-tight group-hover:italic transition-all text-white">Classical vs Presupposition</h4>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Books Tab -->
+        <div id="books" class="tab-content max-w-7xl mx-auto px-6 pb-40">
+            <h2 class="text-6xl md:text-[8rem] font-black tracking-tighter uppercase italic leading-none mb-20 text-white">Books</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
+                <div class="bg-black p-12 hover:bg-[#0d0d0d] transition-colors group">
+                    <span class="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-12 block">Essential — 2011</span>
+                    <h3 class="text-3xl font-black uppercase mb-4 leading-tight text-white group-hover:italic transition-all">Defending Inerrancy</h3>
+                    <p class="text-zinc-400 mb-12 font-light leading-relaxed">Affirming the high view of Scripture in a postmodern world.</p>
+                    <a href="#" class="text-[10px] font-black uppercase tracking-widest flex items-center gap-2 border-b border-white pb-1 w-fit text-white">Buy on Amazon</a>
+                </div>
+                <div class="bg-black p-12 hover:bg-[#0d0d0d] transition-colors group">
+                    <span class="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-12 block">Academic — 2015</span>
+                    <h3 class="text-3xl font-black uppercase mb-4 leading-tight text-white group-hover:italic transition-all">Hermeneutics as Epistemology</h3>
+                    <p class="text-zinc-400 mb-12 font-light leading-relaxed">A philosophical inquiry into how we interpret sacred texts.</p>
+                    <a href="#" class="text-[10px] font-black uppercase tracking-widest flex items-center gap-2 border-b border-white pb-1 w-fit text-white">Buy on Amazon</a>
+                </div>
+                <div class="bg-black p-12 hover:bg-[#0d0d0d] transition-colors group">
+                    <span class="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-12 block">Doctrine — 2020</span>
+                    <h3 class="text-3xl font-black uppercase mb-4 leading-tight text-white group-hover:italic transition-all">Sola Fide</h3>
+                    <p class="text-zinc-400 mb-12 font-light leading-relaxed">Exploring the bedrock of the Reformation for today.</p>
+                    <a href="#" class="text-[10px] font-black uppercase tracking-widest flex items-center gap-2 border-b border-white pb-1 w-fit text-white">Buy on Amazon</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Videos Tab -->
+        <div id="videos" class="tab-content max-w-7xl mx-auto px-6 pb-40">
+            <h2 class="text-6xl md:text-[8rem] font-black tracking-tighter uppercase italic leading-none mb-20 text-white">Videos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="group border-b border-white/10 pb-12">
+                    <div class="aspect-video bg-zinc-900 mb-6 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1585829365234-781fcd69186b?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" alt="Video">
+                    </div>
+                    <h3 class="text-3xl font-black uppercase tracking-tighter mb-4 text-white group-hover:italic transition-all">The Crisis of Authority</h3>
+                    <p class="text-zinc-500 mb-6">A deep dive lecture exploring the historical context and contemporary relevance of this theological framework.</p>
+                    <button class="text-[10px] font-black uppercase tracking-widest border border-white/20 px-6 py-3 hover:bg-white hover:text-black transition-all">Watch Now</button>
+                </div>
+                <div class="group border-b border-white/10 pb-12">
+                    <div class="aspect-video bg-zinc-900 mb-6 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" alt="Video">
+                    </div>
+                    <h3 class="text-3xl font-black uppercase tracking-tighter mb-4 text-white group-hover:italic transition-all">Why Hermeneutics Matters</h3>
+                    <p class="text-zinc-500 mb-6">A deep dive lecture exploring the historical context and contemporary relevance of this theological framework.</p>
+                    <button class="text-[10px] font-black uppercase tracking-widest border border-white/20 px-6 py-3 hover:bg-white hover:text-black transition-all">Watch Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Tab -->
+        <div id="about" class="tab-content max-w-7xl mx-auto px-6 pb-40">
+            <h2 class="text-6xl md:text-[8rem] font-black tracking-tighter uppercase italic leading-none mb-20 text-white">About</h2>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-20">
+                <div class="md:col-span-8">
+                    <p class="text-3xl md:text-4xl font-light leading-snug text-zinc-300 italic mb-12">
+                        "Dr. William C. Roach stands at the intersection of historical Reformed theology and classical philosophy."
+                    </p>
+                    <div class="space-y-6 text-zinc-400 text-lg leading-loose font-light">
+                        <p>
+                            William C. Roach (Ph.D., Southeastern Baptist Theological Seminary) is President of the International Society of Christian Apologetics. He is a prolific author and lecturer focused on the doctrine of inerrancy and the philosophical foundations of Christian faith.
+                        </p>
+                        <p>
+                            Currently serving as senior pastor and adjunct professor, he spends his time training the next generation of defenders of the faith. His work is primarily focused on the defense of the Bible as the infallible Word of God against modern and postmodern critiques.
+                        </p>
+                    </div>
+                </div>
+                <div class="md:col-span-4">
+                    <div class="border border-white/10 p-8 space-y-8 sticky top-32">
+                        <span class="text-[10px] font-black uppercase tracking-[0.4em] text-white">Focus Areas</span>
+                        <ul class="space-y-4 text-xs font-bold uppercase tracking-widest text-zinc-500">
+                            <li class="flex items-center gap-3 text-zinc-300"><i data-lucide="chevron-right" class="w-3 h-3 text-white"></i> Biblical Inerrancy</li>
+                            <li class="flex items-center gap-3 text-zinc-300"><i data-lucide="chevron-right" class="w-3 h-3 text-white"></i> Classical Apologetics</li>
+                            <li class="flex items-center gap-3 text-zinc-300"><i data-lucide="chevron-right" class="w-3 h-3 text-white"></i> Hermeneutics</li>
+                            <li class="flex items-center gap-3 text-zinc-300"><i data-lucide="chevron-right" class="w-3 h-3 text-white"></i> Reformed Theology</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 pt-32 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-20 mb-32">
+                <div class="md:col-span-2">
+                    <div class="text-3xl font-black uppercase tracking-tighter mb-6 text-white">William C. Roach</div>
+                    <p class="text-zinc-500 max-w-sm leading-relaxed text-sm font-medium">
+                        Pursuing the light of objective truth in an age of subjective darkness. Classical theology for the modern mind.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col gap-6">
+                    <span class="text-[10px] font-black uppercase tracking-[0.4em] text-white">Sitemap</span>
+                    <div class="flex flex-col gap-3 text-xs font-bold uppercase tracking-widest text-zinc-500">
+                        <button onclick="navigate('home')" class="text-left hover:text-white transition-colors w-fit">Home</button>
+                        <button onclick="navigate('videos')" class="text-left hover:text-white transition-colors w-fit">Lectures</button>
+                        <button onclick="navigate('books')" class="text-left hover:text-white transition-colors w-fit">Bibliography</button>
+                        <button onclick="navigate('about')" class="text-left hover:text-white transition-colors w-fit">About</button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-6">
+                    <span class="text-[10px] font-black uppercase tracking-[0.4em] text-white">Connect</span>
+                    <div class="flex flex-col gap-4 text-zinc-500">
+                        <a href="#" class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest hover:text-white transition-colors">
+                            <i data-lucide="youtube" class="w-4 h-4"></i> YouTube
+                        </a>
+                        <a href="#" class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest hover:text-white transition-colors">
+                            <i data-lucide="twitter" class="w-4 h-4"></i> Twitter / X
+                        </a>
+                        <a href="#" class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest hover:text-white transition-colors">
+                            <i data-lucide="mail" class="w-4 h-4"></i> Newsletter
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/5 gap-8">
+                <div class="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-700 text-center md:text-left">
+                    © 2026 William C. Roach. All Rights Reserved.
+                </div>
+                <div class="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-700">
+                    Built by <a href="https://ladmedia.co" target="_blank" rel="noopener noreferrer" class="text-white hover:text-zinc-400 transition-all border-b border-white/20 pb-0.5">LAD MEDIA</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Scroll Logic
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black/95', 'backdrop-blur-md', 'border-b', 'border-white/5', 'py-4');
+                navbar.classList.remove('bg-transparent', 'py-8');
+            } else {
+                navbar.classList.remove('bg-black/95', 'backdrop-blur-md', 'border-b', 'border-white/5', 'py-4');
+                navbar.classList.add('bg-transparent', 'py-8');
+            }
+        });
+
+        // Tab Navigation Logic
+        function navigate(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update nav link styles
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if(link.getAttribute('data-tab') === tabId) {
+                    link.classList.add('text-white', 'border-b-2', 'border-white');
+                    link.classList.remove('text-zinc-500');
+                } else {
+                    link.classList.remove('text-white', 'border-b-2', 'border-white');
+                    link.classList.add('text-zinc-500');
+                }
+            });
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            }
+        }
+    </script>
+</body>
+</html>
