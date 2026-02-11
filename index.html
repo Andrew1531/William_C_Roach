@@ -1,187 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. William C. Roach | Theological Discourse</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a;
-            color: #e5e5e5;
-            overflow-x: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .selection-white::selection {
-            background: white;
-            color: black;
-        }
+<title>Dr. William C. Roach | The Objective Faith</title>
 
-        /* Smooth tab transitions */
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease-out;
-        }
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
 
-        .nav-transition {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-    </style>
+body {
+font-family: 'Inter', sans-serif;
+background-color: #0a0a0a;
+color: #e5e5e5;
+overflow-x: hidden;
+}
+
+.selection-white::selection { background: white; color: black; }
+
+.tab-content { display:none; }
+.tab-content.active { display:block; animation: fadeIn .5s ease-out; }
+
+@keyframes fadeIn {
+from {opacity:0; transform:translateY(10px);}
+to {opacity:1; transform:translateY(0);}
+}
+
+.nav-transition { transition: all .5s cubic-bezier(.4,0,.2,1); }
+</style>
 </head>
+
 <body class="selection-white">
 
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 nav-transition bg-transparent py-8">
-        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
-            <div class="flex flex-col cursor-pointer group" onclick="navigate('home')">
-                <span class="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none text-white">William C. Roach</span>
-                <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 group-hover:text-white transition-colors">Theological Discourse</span>
-            </div>
+<!-- NAV -->
+<nav id="navbar" class="fixed top-0 w-full z-50 nav-transition bg-transparent py-8">
+<div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
 
-            <!-- Desktop Nav -->
-            <div class="hidden md:flex items-center gap-10">
-                <button onclick="navigate('home')" class="nav-link text-[11px] font-black uppercase tracking-widest transition-all relative pb-1 text-white border-b-2 border-white" data-tab="home">home</button>
-                <button onclick="navigate('videos')" class="nav-link text-[11px] font-black uppercase tracking-widest transition-all relative pb-1 text-zinc-500 hover:text-white" data-tab="videos">videos</button>
-                <button onclick="navigate('books')" class="nav-link text-[11px] font-black uppercase tracking-widest transition-all relative pb-1 text-zinc-500 hover:text-white" data-tab="books">books</button>
-                <button onclick="navigate('about')" class="nav-link text-[11px] font-black uppercase tracking-widest transition-all relative pb-1 text-zinc-500 hover:text-white" data-tab="about">about</button>
-            </div>
+<div class="flex flex-col cursor-pointer group" onclick="navigate('home')">
+<span class="text-xl md:text-2xl font-black tracking-tighter uppercase text-white">
+William C. Roach
+</span>
+<span class="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 group-hover:text-white transition-colors">
+The Objective Faith: Dialogues in Classical Christian Truth
+</span>
+</div>
 
-            <div class="flex items-center gap-4">
-                <button class="hidden sm:block border border-white/20 hover:border-white px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] transition-all">
-                    Subscribe
-                </button>
-                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
-                    <i data-lucide="menu" id="menu-icon"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
+<div class="hidden md:flex gap-10">
+<button onclick="navigate('home')" class="nav-link text-[11px] font-black uppercase tracking-widest text-white border-b-2 border-white" data-tab="home">home</button>
+<button onclick="navigate('videos')" class="nav-link text-[11px] font-black uppercase tracking-widest text-zinc-500 hover:text-white" data-tab="videos">videos</button>
+<button onclick="navigate('books')" class="nav-link text-[11px] font-black uppercase tracking-widest text-zinc-500 hover:text-white" data-tab="books">books</button>
+<button onclick="navigate('about')" class="nav-link text-[11px] font-black uppercase tracking-widest text-zinc-500 hover:text-white" data-tab="about">about</button>
+</div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-black hidden flex-col items-center justify-center gap-8">
-        <button onclick="navigate('home')" class="text-4xl font-black uppercase tracking-tighter italic text-white">home</button>
-        <button onclick="navigate('videos')" class="text-4xl font-black uppercase tracking-tighter italic text-white">videos</button>
-        <button onclick="navigate('books')" class="text-4xl font-black uppercase tracking-tighter italic text-white">books</button>
-        <button onclick="navigate('about')" class="text-4xl font-black uppercase tracking-tighter italic text-white">about</button>
-        <button onclick="toggleMobileMenu()" class="absolute top-8 right-6 text-white">
-            <i data-lucide="x"></i>
-        </button>
-    </div>
+<div class="flex gap-4">
+<button class="hidden sm:block border border-white/20 hover:border-white px-5 py-2 text-[10px] font-black uppercase">
+Subscribe
+</button>
+<button class="md:hidden" onclick="toggleMobileMenu()">
+<i data-lucide="menu"></i>
+</button>
+</div>
 
-    <main class="pt-40">
-        <!-- Home Tab -->
-        <div id="home" class="tab-content active">
-            <div class="max-w-7xl mx-auto px-6">
-                <!-- Hero Section -->
-                <section class="mb-32 border-l border-white/10 pl-8 md:pl-16">
-                    <div class="max-w-4xl">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="h-[1px] w-12 bg-white/30"></div>
-                            <span class="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400">Pursuing Objective Truth</span>
-                        </div>
-                        <h1 class="text-6xl md:text-[9rem] font-black tracking-tighter mb-8 leading-[0.85] text-white uppercase italic">
-                            Defend <br />
-                            <span class="not-italic">The Faith.</span>
-                        </h1>
-                        <p class="text-xl md:text-2xl text-zinc-400 mb-12 max-w-2xl leading-relaxed font-light">
-                            Bridging the gap between the philosophical academy and the local pulpit to…. Bridging the gap between the academy and the local church.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-6">
-                            <button onclick="navigate('books')" class="bg-white text-black px-12 py-5 text-sm font-black uppercase tracking-widest hover:bg-transparent hover:text-white border border-white transition-all flex items-center justify-center gap-3">
-                                Latest Publications <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-                </section>
+</div>
+</nav>
 
-                <!-- Featured Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-px bg-white/10 border border-white/10">
-                    <div class="md:col-span-8 bg-[#0a0a0a] p-12 hover:bg-[#0f0f0f] transition-colors cursor-pointer" onclick="navigate('videos')">
-                        <div class="flex items-center justify-between mb-20">
-                            <i data-lucide="youtube" class="text-white w-8 h-8"></i>
-                            <span class="text-[10px] font-black tracking-[0.3em] uppercase text-zinc-500">The Video Archive</span>
-                        </div>
-                        <h2 class="text-4xl font-black uppercase tracking-tighter mb-4 italic text-white">Lecture Series</h2>
-                        <p class="text-zinc-500 max-w-sm mb-12">Detailed breakdowns of classical apologetics and contemporary theological crises.</p>
-                        <div class="flex items-center gap-2 text-white font-black text-[10px] uppercase tracking-[0.2em]">
-                            Explore Gallery <i data-lucide="chevron-right" class="w-3 h-3"></i>
-                        </div>
-                    </div>
+<!-- MOBILE MENU -->
+<div id="mobile-menu" class="fixed inset-0 bg-black hidden flex-col items-center justify-center gap-8 z-50">
+<button onclick="navigate('home')" class="text-4xl font-black uppercase italic">home</button>
+<button onclick="navigate('videos')" class="text-4xl font-black uppercase italic">videos</button>
+<button onclick="navigate('books')" class="text-4xl font-black uppercase italic">books</button>
+<button onclick="navigate('about')" class="text-4xl font-black uppercase italic">about</button>
+</div>
 
-                    <div class="md:col-span-4 bg-[#0a0a0a] p-12 hover:bg-[#0f0f0f] transition-colors cursor-pointer" onclick="navigate('books')">
-                        <div class="flex items-center justify-between mb-20">
-                            <i data-lucide="book" class="text-white w-8 h-8"></i>
-                            <span class="text-[10px] font-black tracking-[0.3em] uppercase text-zinc-500">Print</span>
-                        </div>
-                        <h2 class="text-4xl font-black uppercase tracking-tighter mb-4 text-white">Books</h2>
-                        <p class="text-zinc-500 mb-12 italic">From Inerrancy to Epistemology.</p>
-                        <div class="flex items-center gap-2 text-white font-black text-[10px] uppercase tracking-[0.2em]">
-                            View Catalog <i data-lucide="chevron-right" class="w-3 h-3"></i>
-                        </div>
-                    </div>
-                </div>
+<main class="pt-40">
 
-                <!-- Recent Dispatches -->
-                <section class="mt-32 mb-40">
-                    <div class="flex items-center justify-between border-b border-white/10 pb-6 mb-12">
-                        <h3 class="text-[10px] font-black uppercase tracking-[0.5em] text-white">Recent Dispatches</h3>
-                        <button onclick="navigate('videos')" class="text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-white transition-colors">View All</button>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                        <div class="group cursor-pointer">
-                            <div class="relative aspect-video mb-6 overflow-hidden bg-zinc-900 border border-white/5">
-                                <img src="https://images.unsplash.com/photo-1585829365234-781fcd69186b?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 opacity-50 group-hover:opacity-100" alt="Video">
-                                <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all"></div>
-                            </div>
-                            <span class="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-2 block">Apologetics • 12K Views</span>
-                            <h4 class="text-2xl font-black uppercase tracking-tight group-hover:italic transition-all text-white">The Crisis of Authority</h4>
-                        </div>
-                        <div class="group cursor-pointer">
-                            <div class="relative aspect-video mb-6 overflow-hidden bg-zinc-900 border border-white/5">
-                                <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 opacity-50 group-hover:opacity-100" alt="Video">
-                                <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all"></div>
-                            </div>
-                            <span class="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-2 block">Apologetics • 8.5K Views</span>
-                            <h4 class="text-2xl font-black uppercase tracking-tight group-hover:italic transition-all text-white">Why Hermeneutics Matters</h4>
-                        </div>
-                        <div class="group cursor-pointer">
-                            <div class="relative aspect-video mb-6 overflow-hidden bg-zinc-900 border border-white/5">
-                                <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 opacity-50 group-hover:opacity-100" alt="Video">
-                                <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all"></div>
-                            </div>
-                            <span class="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-2 block">Apologetics • 24K Views</span>
-                            <h4 class="text-2xl font-black uppercase tracking-tight group-hover:italic transition-all text-white">Classical vs Presupposition</h4>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
+<!-- HOME -->
+<div id="home" class="tab-content active">
+<div class="max-w-7xl mx-auto px-6">
 
-        <!-- Books Tab -->
-        <div id="books" class="tab-content max-w-7xl mx-auto px-6 pb-40">
-            <h2 class="text-6xl md:text-[8rem] font-black tracking-tighter uppercase italic leading-none mb-20 text-white">Books</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
-                <div class="bg-black p-12 hover:bg-[#0d0d0d] transition-colors group">
-                    <span class="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-12 block">Essential — 2011</span>
-                    <h3 class="text-3xl font-black uppercase mb-4 leading-tight text-white group-hover:italic transition-all">Defending Inerrancy</h3>
-                    <p class="text-zinc-400 mb-12 font-light leading-relaxed">Affirming the high view of Scripture in a postmodern world.</p>
-                    <a href="#" class="text-[10px] font-black uppercase tracking-widest flex items-center gap-2 border-b border-white pb-1 w-fit text-white">Buy on Amazon</a>
-                </div>
-                <div class="bg-black p-12 hover:bg-[#0d0d0d] transition-colors group">
-                    <span class="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-12 block">Academic — 2015</span>
-                    <h3 class="text-3xl font-black uppercase mb-4 leading-tight text-white group-hover:italic transition-all">Hermeneutics as Epistemology</h3>
-                    <p class="text-zinc-400 mb-12 font-light leading-relaxed">A philosophical inquiry into how we interpret sacred texts.</p>
+<section class="mb-32 border-l border-white/10 pl-8 md:pl-16">
+<span class="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400">
+Pursuing the Objective Christian Faith
+</span>
+
+<h1 class="text-6xl md:text-[9rem] font-black uppercase italic text-white leading-[0.85] mt-6">
+Defend<br><span class="not-italic">The Faith.</span>
+</h1>
+
+<p class="text-xl text-zinc-400 mt-8 max-w-2xl">
+Bridging the gap between the academy and the local church.
+</p>
+
+<button onclick="navigate('books')" class="mt-10 bg-white text-black px-12 py-5 text-sm font-black uppercase border border-white hover:bg-transparent hover:text-white">
+Latest Publications
+</button>
+</section>
+
+</div>
+</div>
+
+<!-- BOOKS -->
+<div id="books" class="tab-content max-w-7xl mx-auto px-6 pb-40">
+<h2 class="text-6xl font-black uppercase italic mb-20">Books</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div>
+<h3 class="text-3xl font-black uppercase mb-4">Defending Inerrancy</h3>
+<p class="text-zinc-400 mb-6">Affirming the high view of Scripture.</p>
+<a target="_blank"
+href="https://www.amazon.com/stores/William-C.-Roach/author/B01B22KJ1Y?ref=sr_ntt_srch_lnk_1&qid=1770837548&sr=8-1&shoppingPortalEnabled=true"
+class="border-b border-white">Buy Print Edition</a>
+</div>
+
+<div>
+<h3 class="text-3xl font-black uppercase mb-4">Hermeneutics as Epistemology</h3>
+<p class="text-zinc-400 mb-6">Interpretation and knowledge.</p>
+<a target="_blank"
+href="https://www.amazon.com/stores/William-C.-Roach/author/B01B22KJ1Y?ref=sr_ntt_srch_lnk_1&qid=1770837548&sr=8-1&shoppingPortalEnabled=true"
+class="border-b border-white">Buy Print Edition</a>
+</div>
+
+<div>
+<h3 class="text-3xl font-black uppercase mb-4">Sola Fide</h3>
+<p class="text-zinc-400 mb-6">Reformation doctrine today.</p>
+<a target="_blank"
+href="https://www.amazon.com/stores/William-C.-Roach/author/B01B22KJ1Y?ref=sr_ntt_srch_lnk_1&qid=1770837548&sr=8-1&shoppingPortalEnabled=true"
+class="border-b border-white">Buy Print Edition</a>
+</div>
+
+</div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="tab-content max-w-7xl mx-auto px-6 pb-40">
+<h2 class="text-6xl font-black uppercase italic mb-20">About</h2>
+
+<p class="text-3xl italic text-zinc-300 mb-12">
+Dr. William C. Roach stands at the intersection of historical Reformed theology and classical philosophy.
+</p>
+
+<p class="text-zinc-400 leading-loose">
+William (Bill) C. Roach, Ph.D. serves as Dean of the Norman L. Geisler School of Apologetics at Veritas International University and Dean of Systematic Theology at Redeemer Seminary...
+</p>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-black border-t border-white/10 pt-32 pb-12">
+<div class="max-w-7xl mx-auto px-6">
+
+<p class="text-zinc-500 max-w-sm text-sm">
+Pursuing the objective Christian faith for the modern mind.
+</p>
+
+<div class="mt-10 space-y-3 text-xs uppercase font-bold text-zinc-500">
+
+<a target="_blank" href="https://www.youtube.com/@DrBillRoach" class="flex gap-3 hover:text-white">
+<i data-lucide="youtube"></i> YouTube
+</a>
+
+<a target="_blank" href="https://x.com/billroach_" class="flex gap-3 hover:text-white">
+<i data-lucide="twitter"></i> X
+</a>
+
+<a target="_blank" href="https://drbillroach.substack.com/" class="flex gap-3 hover:text-white">
+<i data-lucide="mail"></i> Substack
+</a>
+
+<a href="mailto:roawil@gmail.com" class="flex gap-3 hover:text-white">
+<i data-lucide="send"></i> Contact
+</a>
+
+</div>
+
+</div>
+</footer>
+
+<script>
+lucide.createIcons();
+
+function navigate(tabId){
+document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+document.getElementById(tabId).classList.add('active');
+window.scrollTo(0,0);
+}
+
+function toggleMobileMenu(){
+document.getElementById('mobile-menu').classList.toggle('hidden');
+}
+</script>
+
+</body>
+</html>
+
