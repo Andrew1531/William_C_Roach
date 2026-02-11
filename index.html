@@ -64,6 +64,12 @@
         ::-webkit-scrollbar-thumb {
             background: #222;
         }
+
+        /* Ensure footer links are clickable */
+        footer a {
+            position: relative;
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="selection-white">
@@ -260,13 +266,18 @@
         <div class="max-w-xl mx-auto px-6 text-center">
             <span class="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-500 mb-8 block">Join the Discourse</span>
             <h2 class="text-4xl font-black uppercase tracking-tighter text-white mb-12 italic">The Objective Faith Newsletter</h2>
-            <form id="subscribe-form" class="space-y-6" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
+            
+            <!-- Updated form to send to roawil@gmail.com using Formspree -->
+            <form action="https://formspree.io/f/roawil@gmail.com" method="POST" class="space-y-6">
                 <div class="relative">
-                    <input type="text" placeholder="Full Name" required class="w-full glass-input px-6 py-5 text-white text-sm uppercase tracking-widest placeholder:text-zinc-600">
+                    <input type="text" name="name" placeholder="Full Name" required class="w-full glass-input px-6 py-5 text-white text-sm uppercase tracking-widest placeholder:text-zinc-600">
                 </div>
                 <div class="relative">
-                    <input type="email" placeholder="Email Address" required class="w-full glass-input px-6 py-5 text-white text-sm uppercase tracking-widest placeholder:text-zinc-600">
+                    <input type="email" name="_replyto" placeholder="Email Address" required class="w-full glass-input px-6 py-5 text-white text-sm uppercase tracking-widest placeholder:text-zinc-600">
                 </div>
+                <!-- Optional: HoneyPot to prevent spam -->
+                <input type="text" name="_gotcha" style="display:none">
+                
                 <button type="submit" class="w-full bg-white text-black py-5 text-[11px] font-black uppercase tracking-[0.3em] hover:bg-zinc-200 transition-all">
                     Register for Correspondence
                 </button>
@@ -275,7 +286,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black border-t border-white/10 pt-32 pb-12">
+    <footer class="bg-black border-t border-white/10 pt-32 pb-12 relative z-10">
         <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-20 mb-32">
                 <div class="md:col-span-2">
@@ -315,7 +326,7 @@
             </div>
             <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
                 <div class="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-700">© 2026 William C. Roach.</div>
-                <div class="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-700">Built by <a href="https://ladmedia.co" target="_blank" class="hover:text-white transition-colors">LAD MEDIA</a></div>
+                <div class="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-700">Built by <a href="https://ladmedia.co" target="_blank" class="hover:text-white transition-colors underline underline-offset-4 decoration-white/20">LAD MEDIA</a></div>
             </div>
         </div>
     </footer>
