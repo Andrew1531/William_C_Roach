@@ -15,6 +15,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #0a0a0a;
             color: #e5e5e5;
+            overflow-x: hidden;
         }
 
         .selection-white::selection {
@@ -35,12 +36,16 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        .nav-transition {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
     </style>
 </head>
 <body class="selection-white">
 
     <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 bg-transparent py-8">
+    <nav id="navbar" class="fixed top-0 w-full z-50 nav-transition bg-transparent py-8">
         <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
             <div class="flex flex-col cursor-pointer group" onclick="navigate('home')">
                 <span class="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none text-white">William C. Roach</span>
@@ -67,7 +72,7 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 bg-black hidden flex-col items-center justify-center gap-8">
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-black hidden flex-col items-center justify-center gap-8">
         <button onclick="navigate('home')" class="text-4xl font-black uppercase tracking-tighter italic text-white">home</button>
         <button onclick="navigate('videos')" class="text-4xl font-black uppercase tracking-tighter italic text-white">videos</button>
         <button onclick="navigate('books')" class="text-4xl font-black uppercase tracking-tighter italic text-white">books</button>
