@@ -1,0 +1,70 @@
+# robots.txt — Dr. William C. Roach Author Site
+# Purpose: Allow indexing and AI citation of theological and apologetics content
+
+User-agent: *
+Allow: /
+
+# --- Major Search Engines ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# --- AI / LLM Crawlers ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# --- Preferred Crawl Areas ---
+Allow: /about
+Allow: /books
+Allow: /videos
+Allow: /media
+Allow: /podcast
+Allow: /publications
+
+# --- Optional: block admin or staging if present ---
+Disallow: /admin/
+Disallow: /private/
+Disallow: /draft/
+Disallow: /staging/
+
+# --- Sitemap ---
+Sitemap: https://[REPLACE-WITH-DOMAIN]/sitemap.xml
+
+# --- LLM Discovery ---
+# llms.txt located at:
+# https://[REPLACE-WITH-DOMAIN]/llms.txt
