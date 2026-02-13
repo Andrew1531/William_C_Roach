@@ -5,215 +5,406 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. William C. Roach | Faith in the Crossfire</title>
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS (Direct via CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Lucide Icons -->
+    <!-- Lucide Icons (Direct via CDN) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background:#0a0a0a;
-            color:#e5e5e5;
-            scroll-behavior:smooth;
-            margin:0;
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0a0a0a; 
+            color: #e5e5e5; 
+            scroll-behavior: smooth; 
+            margin: 0;
         }
-        .tab-content { display:none; }
-        .tab-content.active { display:block; animation:fadeIn .5s ease-out; }
-        @keyframes fadeIn { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:none;} }
-        .nav-active { color:#fff !important; border-bottom:2px solid #fff !important; }
-        .nav-blur { background:rgba(0,0,0,.85); backdrop-filter:blur(16px); border-bottom:1px solid rgba(255,255,255,.1);}        
-        ::selection { background:#fff; color:#000; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.6s ease-out; }
+        
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(15px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        
+        .nav-active { color: white !important; border-bottom: 2px solid white !important; }
+        
+        .nav-blur { 
+            background: rgba(0,0,0,0.85); 
+            backdrop-filter: blur(16px); 
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+        }
+        
+        ::selection { background: white; color: black; }
+        
+        .book-card { 
+            background: #070707; 
+            border: 1px solid rgba(255,255,255,0.05); 
+            padding: 1rem; 
+            transition: all 0.3s ease;
+        }
+        .book-card:hover {
+            background: #0d0d0d;
+            border-color: rgba(255,255,255,0.2);
+        }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden text-left">
 
-<!-- Google Analytics -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5G69VCNG3Z"></script>
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);} 
-gtag('js', new Date());
-gtag('config', 'G-5G69VCNG3Z');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5G69VCNG3Z');
 </script>
 
-<!-- NAV -->
+<!-- Navigation Bar -->
 <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 py-8">
-  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <!-- Brand -->
+        <div class="flex flex-col cursor-pointer group text-left" onclick="navigate('home')">
+            <span class="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none text-white">William C. Roach</span>
+            <span class="text-[9px] md:text-[10px] font-bold tracking-[0.15em] uppercase text-zinc-500 group-hover:text-white transition-colors">
+                Pursuing the Objective Christian Faith for the Modern Mind
+            </span>
+        </div>
 
-    <div class="cursor-pointer" onclick="navigate('home')">
-      <div class="text-xl md:text-2xl font-black uppercase text-white">William C. Roach</div>
-      <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Pursuing the Objective Christian Faith</div>
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center gap-10">
+            <button onclick="navigate('home')" class="nav-btn text-[11px] font-black uppercase tracking-widest text-zinc-500 hover:text-white pb-1 border-b-2 border-transparent" data-tab="home">home</button>
+            <button onclick="navigate('videos')" class="nav-btn text-[11px] font-black uppercase tracking-widest text-zinc-500 hover:text-white pb-1 border-b-2 border-transparent" data-tab="videos">videos</button>
+            <button onclick="navigate('books')" class="nav-btn text-[11px] font-black uppercase tracking-widest text-zinc-500 hover:text-white pb-1 border-b-2 border-transparent" data-tab="books">books</button>
+            <button onclick="navigate('about')" class="nav-btn text-[11px] font-black uppercase tracking-widest text-zinc-500 hover:text-white pb-1 border-b-2 border-transparent" data-tab="about">about</button>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="flex items-center gap-4">
+            <a href="https://drbillroach.substack.com/" target="_blank" class="hidden sm:flex items-center gap-2 border border-white/20 hover:border-white px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] transition-all text-white">
+                Substack <i data-lucide="external-link" class="w-3 h-3"></i>
+            </a>
+            <button class="lg:hidden text-white" onclick="toggleMenu(true)">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
     </div>
-
-    <div class="hidden lg:flex gap-10">
-      <button data-tab="home" onclick="navigate('home')" class="nav-btn text-xs font-black uppercase tracking-widest text-zinc-500 hover:text-white pb-1 border-b-2 border-transparent">Home</button>
-      <button data-tab="videos" onclick="navigate('videos')" class="nav-btn text-xs font-black uppercase tracking-widest text-zinc-500 hover:text-white pb-1 border-b-2 border-transparent">Videos</button>
-      <button data-tab="books" onclick="navigate('books')" class="nav-btn text-xs font-black uppercase tracking-widest text-zinc-500 hover:text-white pb-1 border-b-2 border-transparent">Books</button>
-      <button data-tab="about" onclick="navigate('about')" class="nav-btn text-xs font-black uppercase tracking-widest text-zinc-500 hover:text-white pb-1 border-b-2 border-transparent">About</button>
-    </div>
-
-    <div class="flex items-center gap-4">
-      <a href="https://drbillroach.substack.com/" target="_blank" class="hidden sm:flex border border-white/20 hover:border-white px-5 py-2 text-xs font-black uppercase text-white">Substack</a>
-      <button class="lg:hidden text-white" onclick="toggleMenu(true)"><i data-lucide="menu"></i></button>
-    </div>
-
-  </div>
 </nav>
 
-<!-- MOBILE MENU -->
-<div id="mobile-menu" class="fixed inset-0 bg-black hidden flex-col items-center justify-center gap-10 z-[60]">
-  <button onclick="navigate('home')" class="text-4xl font-black uppercase">Home</button>
-  <button onclick="navigate('videos')" class="text-4xl font-black uppercase">Videos</button>
-  <button onclick="navigate('books')" class="text-4xl font-black uppercase">Books</button>
-  <button onclick="navigate('about')" class="text-4xl font-black uppercase">About</button>
-  <button onclick="toggleMenu(false)" class="absolute top-8 right-8"><i data-lucide="x"></i></button>
+<!-- Fullscreen Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 z-[60] bg-black hidden flex-col items-center justify-center gap-8">
+    <button onclick="navigate('home')" class="text-4xl font-black uppercase tracking-tighter italic text-white">home</button>
+    <button onclick="navigate('videos')" class="text-4xl font-black uppercase tracking-tighter italic text-white">videos</button>
+    <button onclick="navigate('books')" class="text-4xl font-black uppercase tracking-tighter italic text-white">books</button>
+    <button onclick="navigate('about')" class="text-4xl font-black uppercase tracking-tighter italic text-white">about</button>
+    <button onclick="toggleMenu(false)" class="absolute top-8 right-6 text-white">
+        <i data-lucide="x" class="w-8 h-8"></i>
+    </button>
 </div>
 
+<!-- Main Content Wrapper -->
 <main class="pt-40">
+    <!-- HOME SECTION -->
+    <div id="home" class="tab-content active max-w-7xl mx-auto px-6">
+        <section class="mb-32 border-l border-white/10 pl-8 md:pl-16">
+            <div class="max-w-4xl text-left">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="h-[1px] w-12 bg-white/30"></div>
+                    <span class="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400">Pursuing the objective Christian faith for the modern mind</span>
+                </div>
+                <h1 class="text-6xl md:text-[9rem] font-black tracking-tighter mb-8 leading-[0.85] text-white uppercase italic">
+                    Defend <br /> <span class="not-italic">The Faith</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-zinc-400 mb-12 max-w-2xl leading-relaxed font-light text-left">
+                    Bridging the gap between the academy and the local church.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <button onclick="navigate('books')" class="bg-white text-black px-12 py-5 text-sm font-black uppercase tracking-widest hover:bg-transparent hover:text-white border border-white transition-all flex items-center justify-center gap-3">
+                        Published Works <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </button>
+                    <a href="#subscribe-section" class="border border-white/20 hover:border-white px-12 py-5 text-sm font-black uppercase tracking-widest transition-all text-white flex items-center justify-center gap-3">
+                        Join Newsletter
+                    </a>
+                </div>
+            </div>
+        </section>
 
-<!-- HOME -->
-<section id="home" class="tab-content active max-w-7xl mx-auto px-6 pb-40">
-  <h1 class="text-6xl md:text-8xl font-black uppercase italic text-white mb-6">Defend the Faith</h1>
-  <p class="text-xl text-zinc-400 mb-10 max-w-2xl">Bridging the gap between the academy and the local church.</p>
-
-  <div class="flex flex-col sm:flex-row gap-6 mb-24">
-    <button onclick="navigate('books')" class="bg-white text-black px-10 py-4 font-black uppercase">Published Works</button>
-    <button onclick="navigate('videos')" class="border border-white px-10 py-4 font-black uppercase">Watch Videos</button>
-  </div>
-
-  <div class="grid md:grid-cols-2 gap-10">
-    <div onclick="navigate('videos')" class="border border-white/10 p-10 cursor-pointer hover:bg-white/5">
-      <h2 class="text-3xl font-black text-white mb-3">Faith in the Crossfire — Videos</h2>
-      <p class="text-zinc-500 mb-6">Podcast episodes, lectures, and YouTube content.</p>
-      <a href="https://www.youtube.com/@DrBillRoach" target="_blank" class="underline">Visit YouTube Channel</a>
+        <!-- Grid Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-px bg-white/10 border border-white/10 mb-40 text-left">
+            <div class="md:col-span-8 bg-[#0a0a0a] p-12 hover:bg-[#0f0f0f] transition-colors cursor-pointer group" onclick="navigate('videos')">
+                <div class="flex items-center justify-between mb-20">
+                    <i data-lucide="mic-2" class="text-white w-8 h-8"></i>
+                    <span class="text-[10px] font-black tracking-[0.3em] uppercase text-zinc-500">Podcast & Lectures</span>
+                </div>
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-4 italic text-white group-hover:translate-x-2 transition-transform">Faith in the Crossfire</h2>
+                <p class="text-zinc-500 max-w-sm mb-12">Serious analysis of today’s most important ideas from a Christian worldview.</p>
+                <div class="flex items-center gap-2 text-white font-black text-[10px] uppercase tracking-[0.2em]">
+                    Watch on YouTube <i data-lucide="chevron-right" class="w-3 h-3"></i>
+                </div>
+            </div>
+            <div class="md:col-span-4 bg-[#0a0a0a] p-12 hover:bg-[#0f0f0f] transition-colors cursor-pointer group" onclick="navigate('books')">
+                <div class="flex items-center justify-between mb-20">
+                    <i data-lucide="book" class="text-white w-8 h-8"></i>
+                    <span class="text-[10px] font-black tracking-[0.3em] uppercase text-zinc-500">Academic Catalog</span>
+                </div>
+                <h2 class="text-4xl font-black uppercase tracking-tighter mb-4 text-white group-hover:translate-x-2 transition-transform">Books</h2>
+                <p class="text-zinc-500 mb-12 italic">From Inerrancy to Hermeneutics.</p>
+                <div class="flex items-center gap-2 text-white font-black text-[10px] uppercase tracking-[0.2em]">
+                    Amazon Author Page <i data-lucide="chevron-right" class="w-3 h-3"></i>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div onclick="navigate('books')" class="border border-white/10 p-10 cursor-pointer hover:bg-white/5">
-      <h2 class="text-3xl font-black text-white mb-3">Books & Publications</h2>
-      <p class="text-zinc-500 mb-6">Academic and popular works.</p>
-      <a href="https://www.amazon.com/stores/William-C.-Roach/author/B01B22KJ1Y" target="_blank" class="underline">Amazon Author Page</a>
+    <!-- BOOKS SECTION -->
+    <div id="books" class="tab-content max-w-7xl mx-auto px-6 pb-40 text-left">
+        <div class="flex flex-col md:flex-row justify-between items-baseline mb-20 gap-8">
+            <h2 class="text-6xl md:text-[8rem] font-black tracking-tighter uppercase italic leading-none text-white">Books</h2>
+            <a href="https://www.amazon.com/stores/William-C.-Roach/author/B01B22KJ1Y" target="_blank" class="text-[10px] font-black uppercase tracking-widest border border-white/20 px-8 py-4 hover:bg-white hover:text-black transition-all text-white flex items-center gap-3">
+                Complete Catalog <i data-lucide="external-link" class="w-3 h-3"></i>
+            </a>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
+            <div class="bg-black p-12 group">
+                <span class="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-12 block">Featured Work</span>
+                <h3 class="text-3xl font-black uppercase mb-4 text-white group-hover:italic transition-all">Defending Inerrancy</h3>
+                <p class="text-zinc-400 mb-12 font-light leading-relaxed">Affirming the high view of Scripture in a postmodern world.</p>
+                <a href="https://www.amazon.com/stores/William-C.-Roach/author/B01B22KJ1Y" target="_blank" class="text-[10px] font-black uppercase border-b border-white pb-1 w-fit text-white">Get Copy</a>
+            </div>
+
+            <div class="bg-black p-12 group">
+                <span class="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-12 block">Academic Inquiry</span>
+                <h3 class="text-3xl font-black uppercase mb-4 text-white group-hover:italic transition-all">Hermeneutics</h3>
+                <p class="text-zinc-400 mb-12 font-light leading-relaxed">A philosophical inquiry into how we interpret sacred texts.</p>
+                <a href="https://www.amazon.com/stores/William-C.-Roach/author/B01B22KJ1Y" target="_blank" class="text-[10px] font-black uppercase border-b border-white pb-1 w-fit text-white">Get Copy</a>
+            </div>
+
+            <div class="bg-black p-12 group">
+                <span class="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-12 block">Historical Doctrine</span>
+                <h3 class="text-3xl font-black uppercase mb-4 text-white group-hover:italic transition-all">Sola Fide</h3>
+                <p class="text-zinc-400 mb-12 font-light leading-relaxed">Exploring the bedrock of the Reformation for today.</p>
+                <a href="https://www.amazon.com/stores/William-C.-Roach/author/B01B22KJ1Y" target="_blank" class="text-[10px] font-black uppercase border-b border-white pb-1 w-fit text-white">Get Copy</a>
+            </div>
+        </div>
     </div>
-  </div>
-</section>
 
-<!-- VIDEOS -->
-<section id="videos" class="tab-content max-w-7xl mx-auto px-6 pb-40">
-  <h2 class="text-5xl font-black uppercase text-white mb-12">Videos</h2>
-
-  <div class="grid md:grid-cols-3 gap-10">
-    <a href="https://www.youtube.com/@DrBillRoach" target="_blank" class="border border-white/10 p-6 hover:bg-white/5">
-      <h3 class="font-black text-xl mb-2">YouTube Channel</h3>
-      <p class="text-zinc-500 text-sm">Full archive of Faith in the Crossfire episodes.</p>
-    </a>
-
-    <a href="https://drbillroach.substack.com/" target="_blank" class="border border-white/10 p-6 hover:bg-white/5">
-      <h3 class="font-black text-xl mb-2">Newsletter Videos</h3>
-      <p class="text-zinc-500 text-sm">Embedded video discussions and releases.</p>
-    </a>
-
-    <div class="border border-white/10 p-6">
-      <h3 class="font-black text-xl mb-2">Lecture Series</h3>
-      <p class="text-zinc-500 text-sm">Conference and academic lectures.</p>
+    <!-- VIDEOS SECTION -->
+    <div id="videos" class="tab-content max-w-7xl mx-auto px-6 pb-40 text-left">
+        <h2 class="text-6xl md:text-[8rem] font-black tracking-tighter uppercase italic leading-none mb-20 text-white">Videos</h2>
+        
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="group border-b border-white/10 pb-12">
+                <div class="aspect-video bg-zinc-900 mb-6 relative flex items-center justify-center">
+                    <i data-lucide="play" class="text-white/10 group-hover:text-white/50 transition-all w-16 h-16"></i>
+                </div>
+                <h3 class="text-3xl font-black uppercase mb-4 text-white group-hover:italic transition-all">Faith in the Crossfire</h3>
+                <p class="text-zinc-500 mb-6 font-light">Serious analysis of today’s most important ideas from a Christian worldview.</p>
+                <a href="https://www.youtube.com/@DrBillRoach" target="_blank" class="inline-block text-[10px] font-black uppercase tracking-widest border border-white/20 px-6 py-3 hover:bg-white hover:text-black transition-all text-white uppercase">YouTube Channel</a>
+            </div>
+            
+            <div class="group border-b border-white/10 pb-12">
+                <div class="aspect-video bg-zinc-900 mb-6 relative flex items-center justify-center">
+                    <i data-lucide="graduation-cap" class="text-white/10 group-hover:text-white/50 transition-all w-16 h-16"></i>
+                </div>
+                <h3 class="text-3xl font-black uppercase mb-4 text-white group-hover:italic transition-all">Academic Lectures</h3>
+                <p class="text-zinc-500 mb-6 font-light">Lectures on apologetics and philosophical theology.</p>
+                <a href="https://www.youtube.com/@DrBillRoach" target="_blank" class="inline-block text-[10px] font-black uppercase tracking-widest border border-white/20 px-6 py-3 hover:bg-white hover:text-black transition-all text-white uppercase">Browse Archive</a>
+            </div>
+        </div>
     </div>
-  </div>
-</section>
 
-<!-- BOOKS -->
-<section id="books" class="tab-content max-w-7xl mx-auto px-6 pb-40">
-  <h2 class="text-5xl font-black uppercase text-white mb-12">Books</h2>
-
-  <div class="grid md:grid-cols-2 gap-10">
-    <a href="https://www.amazon.com/stores/William-C.-Roach/author/B01B22KJ1Y" target="_blank" class="border border-white/10 p-8 hover:bg-white/5">
-      <h3 class="text-2xl font-black mb-3">Amazon Catalog</h3>
-      <p class="text-zinc-500">Complete published works and academic titles.</p>
-    </a>
-
-    <a href="disclaimer.html" class="border border-white/10 p-8 hover:bg-white/5">
-      <h3 class="text-2xl font-black mb-3">Legal & Contact Policy</h3>
-      <p class="text-zinc-500">Email and correspondence authorization.</p>
-    </a>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="tab-content max-w-4xl mx-auto px-6 pb-40">
-  <h2 class="text-5xl font-black uppercase text-white mb-12">About</h2>
-  <p class="text-zinc-400 leading-relaxed mb-6">
-    Dr. William C. Roach works at the intersection of academic theology, philosophy, and public Christian thought, equipping believers to think clearly and defend the faith in modern intellectual culture.
-  </p>
-  <p class="text-zinc-400 leading-relaxed">
-    His work focuses on apologetics, hermeneutics, and doctrinal clarity for both scholars and the local church.
-  </p>
-</section>
-
+    <!-- ABOUT SECTION -->
+    <div id="about" class="tab-content max-w-7xl mx-auto px-6 pb-40 text-left">
+        <h2 class="text-6xl md:text-[8rem] font-black tracking-tighter uppercase italic leading-none mb-20 text-white">About</h2>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-20">
+            <div class="md:col-span-8">
+                <div class="space-y-8 text-zinc-400 text-lg leading-loose font-light">
+                    <p class="text-white text-2xl font-bold italic mb-8 leading-snug">
+                        William (Bill) C. Roach, Ph.D. serves as Dean of the Norman L. Geisler School of Apologetics at Veritas International University and Dean of Systematic Theology at Redeemer Seminary. 
+                    </p>
+                    <p>
+                        He is a professor of philosophy and theology and has authored numerous books and scholarly articles in Christian apologetics, philosophical theology, and evangelical doctrine.
+                    </p>
+                    <p>
+                        Dr. Roach has been featured in <span class="text-white italic">Christianity Today</span> and <span class="text-white italic">World Magazine</span> for his contributions to apologetics and evangelical scholarship. He is the Past President of the International Society of Christian Apologetics and serves on the faculty of multiple evangelical colleges and seminaries.
+                    </p>
+                    <p>
+                        He has lectured at institutions including <span class="text-white italic">Columbia University</span> and the <span className="text-white italic">University of North Carolina at Chapel Hill</span>, as well as at churches and conferences throughout North and South America.
+                    </p>
+                </div>
+            </div>
+            <div class="md:col-span-4">
+                <div class="border border-white/10 p-8 space-y-8 sticky top-32">
+                    <span class="text-[10px] font-black uppercase tracking-[0.4em] text-white">Academic Focus</span>
+                    <ul class="space-y-4 text-xs font-bold uppercase tracking-widest text-zinc-500">
+                        <li class="flex items-center gap-3 text-zinc-300"><i data-lucide="shield-check" class="text-white w-4 h-4"></i> Biblical Inerrancy</li>
+                        <li class="flex items-center gap-3 text-zinc-300"><i data-lucide="book-open" class="text-white w-4 h-4"></i> Classical Apologetics</li>
+                        <li class="flex items-center gap-3 text-zinc-300"><i data-lucide="scale" class="text-white w-4 h-4"></i> Philosophical Theology</li>
+                        <li class="flex items-center gap-3 text-zinc-300"><i data-lucide="feather" class="text-white w-4 h-4"></i> Hermeneutics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
-<!-- SUBSCRIBE -->
-<section id="subscribe-section" class="py-32 border-t border-white/10 text-center">
-  <div class="max-w-xl mx-auto px-6">
-    <h2 class="text-3xl font-black uppercase text-white mb-8">Newsletter</h2>
-    <form action="https://formspree.io/f/mlgwgkyy" method="POST" id="contact-form" class="space-y-5">
-      <input type="email" name="email" required placeholder="Email" class="w-full bg-white/5 border border-white/20 px-5 py-4">
-      <textarea name="message" required placeholder="Message" class="w-full bg-white/5 border border-white/20 px-5 py-4 min-h-[120px]"></textarea>
-      <button id="submit-btn" class="w-full bg-white text-black py-4 font-black uppercase">Send</button>
-    </form>
-    <div id="success-msg" class="hidden mt-6 text-white">Message sent.</div>
-  </div>
+<!-- Subscription Form Section -->
+<section id="subscribe-section" class="py-40 bg-zinc-950 border-t border-white/5 relative z-10 text-center">
+    <div class="max-w-xl mx-auto px-6">
+        <span class="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-500 mb-8 block">Join the Discourse</span>
+        <h2 class="text-4xl font-black uppercase tracking-tighter text-white mb-12 italic">Faith in the Crossfire Newsletter</h2>
+        
+        <form action="https://formspree.io/f/mlgwgkyy" method="POST" id="contact-form" class="space-y-6">
+            <input type="email" name="email" placeholder="YOUR EMAIL ADDRESS" required class="w-full bg-white/5 border border-white/10 focus:border-white/40 outline-none px-6 py-5 text-white text-sm uppercase tracking-widest placeholder:text-zinc-600 transition-all">
+            <textarea name="message" placeholder="YOUR MESSAGE OR INQUIRY" required class="w-full bg-white/5 border border-white/10 focus:border-white/40 outline-none px-6 py-5 text-white text-sm uppercase tracking-widest placeholder:text-zinc-600 transition-all min-h-[120px]"></textarea>
+            <button type="submit" id="submit-btn" class="w-full bg-white text-black py-5 text-[11px] font-black uppercase tracking-[0.3em] hover:bg-zinc-200 transition-all">Send Correspondence</button>
+        </form>
+        
+        <div id="success-msg" class="hidden bg-white/5 border border-white/20 p-12">
+            <p class="text-white font-black uppercase tracking-widest text-sm">Thank you.</p>
+            <p class="text-zinc-500 mt-2 text-xs">Your message has been sent successfully.</p>
+            <button onclick="resetForm()" class="mt-8 text-white text-[10px] uppercase tracking-widest border-b border-white pb-1">Send another message</button>
+        </div>
+    </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="border-t border-white/10 py-16 text-center text-zinc-500 text-sm">
-  © 2026 William C. Roach • All Rights Reserved
+<!-- Footer -->
+<footer class="bg-black border-t border-white/10 pt-32 pb-12 relative z-10 text-left">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-20 mb-32">
+            <div class="md:col-span-2">
+                <div class="text-3xl font-black uppercase tracking-tighter mb-4 text-white">William C. Roach</div>
+                <div class="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 mb-8">Pursuing the Objective Christian Faith</div>
+                <p class="text-zinc-500 max-w-sm leading-relaxed text-sm">Bridging the gap between the academy and the local church.</p>
+            </div>
+
+            <div class="flex flex-col gap-6">
+                <span class="text-[10px] font-black uppercase tracking-[0.4em] text-white">Resources</span>
+                <div class="flex flex-col gap-3 text-xs font-bold uppercase tracking-widest text-zinc-500">
+                    <a href="https://drbillroach.substack.com/" target="_blank" class="hover:text-white transition-colors">Substack</a>
+                    <a href="https://www.amazon.com/stores/William-C.-Roach/author/B01B22KJ1Y" target="_blank" class="hover:text-white transition-colors">Amazon Catalog</a>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-6">
+                <span class="text-[10px] font-black uppercase tracking-[0.4em] text-white">Connect</span>
+                <div class="flex flex-col gap-4 text-zinc-500">
+                    <a href="https://x.com/billroach_" target="_blank" class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest hover:text-white">
+                        <i data-lucide="twitter" class="w-4 h-4"></i> Twitter / X
+                    </a>
+                    <a href="https://www.youtube.com/@DrBillRoach" target="_blank" class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest hover:text-white">
+                        <i data-lucide="youtube" class="w-4 h-4"></i> YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-700">
+            <div>© 2026 William C. Roach.</div>
+            <div>Built by <a href="https://ladmedia.co" target="_blank" class="hover:text-white underline underline-offset-4 decoration-white/20">LAD MEDIA</a></div>
+        </div>
+    </div>
 </footer>
 
+<!-- Scripts for Functionality -->
 <script>
-  lucide.createIcons();
+    // Initialize Icons
+    lucide.createIcons();
 
-  function navigate(id){
-    document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-    const el=document.getElementById(id);
-    if(el) el.classList.add('active');
-    document.querySelectorAll('.nav-btn').forEach(b=>{
-      b.classList.toggle('nav-active', b.dataset.tab===id);
-    });
-    toggleMenu(false);
-    window.scrollTo({top:0,behavior:'smooth'});
-  }
+    // Navigation System
+    function navigate(tabId) {
+        // Hide all tabs
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        
+        // Show target tab
+        const target = document.getElementById(tabId);
+        if(target) target.classList.add('active');
+        
+        // Update nav buttons
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            if(btn.dataset.tab === tabId) btn.classList.add('nav-active');
+            else btn.classList.remove('nav-active');
+        });
+        
+        // Close mobile menu
+        toggleMenu(false);
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-  function toggleMenu(open){
-    const m=document.getElementById('mobile-menu');
-    m.classList.toggle('hidden', !open);
-    m.classList.toggle('flex', open);
-  }
-
-  window.onscroll=function(){
-    const n=document.getElementById('navbar');
-    if(window.scrollY>50){ n.classList.add('nav-blur','py-4'); n.classList.remove('py-8'); }
-    else { n.classList.remove('nav-blur','py-4'); n.classList.add('py-8'); }
-  }
-
-  const form=document.getElementById('contact-form');
-  if(form){
-    form.onsubmit=async e=>{
-      e.preventDefault();
-      const btn=document.getElementById('submit-btn');
-      btn.disabled=true; btn.innerText='SENDING...';
-      const r=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
-      if(r.ok){ form.classList.add('hidden'); document.getElementById('success-msg').classList.remove('hidden'); }
-      else { btn.disabled=false; btn.innerText='TRY AGAIN'; }
+    // Navbar Scroll Effect
+    window.onscroll = function() {
+        const nav = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            nav.classList.add('nav-blur', 'py-4');
+            nav.classList.remove('py-8');
+        } else {
+            nav.classList.remove('nav-blur', 'py-4');
+            nav.classList.add('py-8');
+        }
     };
-  }
 
-  document.addEventListener('DOMContentLoaded',()=>{
-    const b=document.querySelector('[data-tab="home"]'); if(b) b.classList.add('nav-active');
-  });
+    // Mobile Menu Toggle
+    function toggleMenu(isOpen) {
+        const menu = document.getElementById('mobile-menu');
+        if(isOpen) {
+            menu.classList.replace('hidden', 'flex');
+            document.body.style.overflow = 'hidden';
+        } else {
+            menu.classList.replace('flex', 'hidden');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    // Form Handling
+    const form = document.getElementById('contact-form');
+    const successMsg = document.getElementById('success-msg');
+    
+    function resetForm() {
+        form.classList.remove('hidden');
+        successMsg.classList.add('hidden');
+        form.reset();
+    }
+
+    if(form) {
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.innerText = "SENDING...";
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    form.classList.add('hidden');
+                    successMsg.classList.remove('hidden');
+                } else {
+                    btn.disabled = false;
+                    btn.innerText = "ERROR - TRY AGAIN";
+                }
+            } catch (err) {
+                btn.disabled = false;
+                btn.innerText = "ERROR - TRY AGAIN";
+            }
+        };
+    }
+
+    // Set initial active state
+    document.addEventListener('DOMContentLoaded', () => {
+        const homeBtn = document.querySelector('[data-tab="home"]');
+        if(homeBtn) homeBtn.classList.add('nav-active');
+    });
 </script>
 
 </body>
