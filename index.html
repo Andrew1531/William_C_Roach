@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. William C. Roach | Faith in the Crossfire</title>
 
-    <!-- Tailwind CSS (Direct via CDN) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Favicon Integration -->
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+    <link rel="apple-touch-icon" href="favicon.jpg">
 
-    <!-- Lucide Icons (Direct via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Google Fonts (Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -52,6 +52,26 @@
             background: #0d0d0d;
             border-color: rgba(255,255,255,0.2);
         }
+
+        /* Modal Styles for Disclaimer */
+        #disclaimer-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-content {
+            background: #111;
+            border: 1px solid #333;
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            position: relative;
+        }
     </style>
 </head>
 <body class="overflow-x-hidden text-left">
@@ -68,15 +88,17 @@
 <!-- Navigation Bar -->
 <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 py-8">
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <!-- Brand -->
-        <div class="flex flex-col cursor-pointer group text-left" onclick="navigate('home')">
-            <span class="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none text-white">William C. Roach</span>
-            <span class="text-[9px] md:text-[10px] font-bold tracking-[0.15em] uppercase text-zinc-500 group-hover:text-white transition-colors">
-                Pursuing the Objective Christian Faith for the Modern Mind
-            </span>
+        <!-- Logo and Name Group -->
+        <div class="flex items-center gap-4 cursor-pointer group" onclick="navigate('home')">
+            <img src="favicon.jpg" alt="Logo" class="w-10 h-10 md:w-12 md:h-12 object-cover">
+            <div class="flex flex-col text-left">
+                <span class="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none text-white">William C. Roach</span>
+                <span class="text-[9px] md:text-[10px] font-bold tracking-[0.15em] uppercase text-zinc-500 group-hover:text-white transition-colors">
+                    Pursuing the Objective Christian Faith for the Modern Mind
+                </span>
+            </div>
         </div>
 
-        <!-- Desktop Menu -->
         <div class="hidden lg:flex items-center gap-10">
             <button onclick="navigate('home')" class="nav-btn text-[11px] font-black uppercase tracking-widest text-zinc-500 hover:text-white pb-1 border-b-2 border-transparent" data-tab="home">home</button>
             <button onclick="navigate('videos')" class="nav-btn text-[11px] font-black uppercase tracking-widest text-zinc-500 hover:text-white pb-1 border-b-2 border-transparent" data-tab="videos">videos</button>
@@ -84,7 +106,6 @@
             <button onclick="navigate('about')" class="nav-btn text-[11px] font-black uppercase tracking-widest text-zinc-500 hover:text-white pb-1 border-b-2 border-transparent" data-tab="about">about</button>
         </div>
 
-        <!-- Call to Action -->
         <div class="flex items-center gap-4">
             <a href="https://drbillroach.substack.com/" target="_blank" class="hidden sm:flex items-center gap-2 border border-white/20 hover:border-white px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] transition-all text-white">
                 Substack <i data-lucide="external-link" class="w-3 h-3"></i>
@@ -235,7 +256,7 @@
                         Dr. Roach has been featured in <span class="text-white italic">Christianity Today</span> and <span class="text-white italic">World Magazine</span> for his contributions to apologetics and evangelical scholarship. He is the Past President of the International Society of Christian Apologetics and serves on the faculty of multiple evangelical colleges and seminaries.
                     </p>
                     <p>
-                        He has lectured at institutions including <span class="text-white italic">Columbia University</span> and the <span className="text-white italic">University of North Carolina at Chapel Hill</span>, as well as at churches and conferences throughout North and South America.
+                        He has lectured at institutions including <span class="text-white italic">Columbia University</span> and the <span class="text-white italic">University of North Carolina at Chapel Hill</span>, as well as at churches and conferences throughout North and South America.
                     </p>
                 </div>
             </div>
@@ -307,35 +328,52 @@
 
         <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-700">
             <div>© 2026 William C. Roach.</div>
-            <div>Built by <a href="https://ladmedia.co" target="_blank" class="hover:text-white underline underline-offset-4 decoration-white/20">LAD MEDIA</a></div>
+            <div class="flex items-center gap-6">
+                <button onclick="toggleDisclaimer(true)" class="hover:text-zinc-400 transition-colors uppercase cursor-pointer">Legal Disclaimer</button>
+                <div>Built by <a href="https://ladmedia.co" target="_blank" class="hover:text-white underline underline-offset-4 decoration-white/20">LAD MEDIA</a></div>
+            </div>
         </div>
     </div>
 </footer>
 
-<!-- Scripts for Functionality -->
+<!-- Disclaimer Modal Overlay -->
+<div id="disclaimer-modal">
+    <div class="modal-content">
+        <button onclick="toggleDisclaimer(false)" class="absolute top-4 right-4 text-white">
+            <i data-lucide="x"></i>
+        </button>
+        <h2 class="text-3xl font-black uppercase tracking-tighter text-white mb-6">Legal Disclaimer</h2>
+        <div class="space-y-4 text-zinc-400 text-sm leading-relaxed">
+            <p>Dr. William C. Roach is authorized to contact you solely for the purposes of correspondence related to his newsletters, and notifications regarding new video and book releases.</p>
+            <p>Your email and personal information will never be sold, shared, or used for any other purposes beyond the scope of these communications.</p>
+            <p>By subscribing or providing your email, you consent to receive updates directly from Dr. William C. Roach in accordance with this policy.</p>
+            <p>For any questions regarding this disclaimer or your personal information, please <a href="mailto:contact@williamcroach.com" class="text-white underline">contact us</a>.</p>
+        </div>
+    </div>
+</div>
+
 <script>
     // Initialize Icons
     lucide.createIcons();
 
+    // Disclaimer Toggle Function
+    function toggleDisclaimer(show) {
+        const modal = document.getElementById('disclaimer-modal');
+        modal.style.display = show ? 'flex' : 'none';
+        document.body.style.overflow = show ? 'hidden' : 'auto';
+    }
+
     // Navigation System
     function navigate(tabId) {
-        // Hide all tabs
         document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-        
-        // Show target tab
         const target = document.getElementById(tabId);
         if(target) target.classList.add('active');
         
-        // Update nav buttons
         document.querySelectorAll('.nav-btn').forEach(btn => {
             if(btn.dataset.tab === tabId) btn.classList.add('nav-active');
             else btn.classList.remove('nav-active');
         });
-        
-        // Close mobile menu
         toggleMenu(false);
-        
-        // Scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
