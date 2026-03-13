@@ -63,8 +63,8 @@ Disallow: /draft/
 Disallow: /staging/
 
 # --- Sitemap ---
-Sitemap: https://[REPLACE-WITH-DOMAIN]/sitemap.xml
+Sitemap: https://williamcroach.com/sitemap.xml
 
 # --- LLM Discovery ---
 # llms.txt located at:
-# https://[REPLACE-WITH-DOMAIN]/llms.txt
+# https://williamcroach.com/llms.txt
