@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-M5MPZ3ZR');</script>
-    <!-- End Google Tag Manager -->
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5G69VCNG3Z"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -21,11 +18,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. William C. Roach | Faith in the Crossfire</title>
     
-    <!-- Scripts -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -38,25 +35,19 @@
             scroll-behavior: smooth; 
             margin: 0;
         }
-        
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.6s ease-out; }
-        
         @keyframes fadeIn { 
             from { opacity: 0; transform: translateY(15px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
-        
         .nav-active { color: white !important; border-bottom: 2px solid white !important; }
-        
         .nav-blur { 
             background: rgba(0,0,0,0.85); 
             backdrop-filter: blur(16px); 
             border-bottom: 1px solid rgba(255,255,255,0.1); 
         }
-        
         ::selection { background: white; color: black; }
-        
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
@@ -67,14 +58,10 @@
         }
         .video-container iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             border: 0;
         }
-
-        /* Modal Base Styles */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -95,55 +82,25 @@
             padding: 40px;
             position: relative;
         }
-
         .mobile-menu-open { overflow: hidden; }
-
         input:focus { outline: none; }
     </style>
 </head>
 <body class="overflow-x-hidden text-left">
-<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5MPZ3ZR"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
-<!-- Legal & Privacy Modal -->
-<div id="legal-modal" class="modal-overlay">
-    <div class="modal-content">
-        <h2 class="text-3xl font-black uppercase tracking-tighter mb-8 text-white italic">Legal & Privacy</h2>
-        <div class="space-y-10">
-            <section>
-                <h3 class="text-xs font-black uppercase tracking-[0.3em] text-white mb-4 border-b border-white/10 pb-2">Legal Disclaimer</h3>
-                <div class="text-zinc-500 text-sm space-y-4 leading-relaxed font-light">
-                    <p>The content provided on this website, including videos, lectures, and written materials, is for educational and informational purposes only.</p>
-                    <p>Views expressed by Dr. William C. Roach are his own and do not necessarily reflect the official policy or position of any affiliated academic institutions or organizations.</p>
-                </div>
-            </section>
-            <section>
-                <h3 class="text-xs font-black uppercase tracking-[0.3em] text-white mb-4 border-b border-white/10 pb-2">Privacy Policy</h3>
-                <div class="text-zinc-500 text-sm space-y-4 leading-relaxed font-light">
-                    <p><strong class="text-zinc-300">Data Protection:</strong> Dr. William C. Roach, LLC is committed to your privacy. We will <span class="text-white underline">never</span> sell, rent, or trade your personal information.</p>
-                    <p><strong class="text-zinc-300">Marketing Authorization:</strong> By subscribing, you authorize communications from Dr. William C. Roach, LLC regarding book releases and events.</p>
-                </div>
-            </section>
-        </div>
-        <button onclick="closeLegalModal()" class="w-full mt-12 bg-white text-black font-black uppercase py-4 tracking-widest hover:bg-zinc-200 transition-colors">Close</button>
-    </div>
-</div>
-
-<!-- Success Modal -->
 <div id="success-modal" class="modal-overlay">
     <div class="modal-content text-center">
-      <div class="w-10 h-10 bg-white flex items-center justify-center overflow-hidden">
-    <img src="favicon.png" alt="Logo" class="w-full h-full object-cover">
-</div>
+        <div class="w-16 h-16 bg-white flex items-center justify-center text-black mx-auto mb-6">
+            <i data-lucide="check" class="w-8 h-8"></i>
+        </div>
         <h2 class="text-3xl font-black uppercase tracking-tighter mb-4 text-white italic">Thank You</h2>
         <p class="text-zinc-500 text-sm mb-8 leading-relaxed font-light">Your subscription has been received.</p>
         <button onclick="closeSuccessModal()" class="w-full border border-white/20 text-white font-black uppercase py-4 tracking-widest hover:bg-white hover:text-black transition-all">Close</button>
     </div>
 </div>
 
-<!-- Mobile Menu Overlay -->
 <div id="mobile-menu" class="fixed inset-0 bg-black z-[100] translate-x-full transition-transform duration-500 flex flex-col p-8">
     <div class="flex justify-end mb-12">
         <button onclick="toggleMenu(false)" class="text-white p-2"><i data-lucide="x" class="w-8 h-8"></i></button>
@@ -157,11 +114,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </div>
 
-<!-- Navigation Bar -->
 <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 py-8">
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <div class="flex items-center gap-4 cursor-pointer group" onclick="navigate('home')">
-            <div class="w-10 h-10 bg-white flex items-center justify-center text-black font-black text-xl">R</div>
+            <div class="w-10 h-10 bg-white flex items-center justify-center overflow-hidden">
+                <img src="favicon.png" alt="Logo" class="w-full h-full object-contain p-1">
+            </div>
             <div class="flex flex-col text-left">
                 <span class="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none text-white">William C. Roach</span>
                 <span class="text-[9px] md:text-[10px] font-bold tracking-[0.15em] uppercase text-zinc-500 group-hover:text-white transition-colors">
@@ -181,10 +139,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </nav>
 
-<!-- Main Content -->
 <main class="pt-40">
     
-    <!-- HOME SECTION -->
     <div id="home" class="tab-content active max-w-7xl mx-auto px-6">
         <section class="mb-32 border-l border-white/10 pl-8 md:pl-16">
             <div class="max-w-4xl text-left">
@@ -227,13 +183,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </div>
 
-    <!-- VIDEOS SECTION -->
     <div id="videos" class="tab-content max-w-7xl mx-auto px-6 pb-40">
         <h2 class="text-6xl md:text-[8rem] font-black tracking-tighter uppercase italic leading-none mb-20 text-white">Videos</h2>
         <div class="grid md:grid-cols-2 gap-16">
             <div class="group">
                 <div class="video-container mb-6 border border-white/10">
-                   <iframe width="560" height="315" src="https://www.youtube.com/embed/xplqpglSoZk?si=sk8Q-zOuQ-o0f25G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/Gp3A2TqnJDc?si=ENbRqL2vDRt5UVzj" title="Faith in the Crossfire" allowfullscreen></iframe>
+                </div>
                 <h3 class="text-2xl font-black uppercase mb-2 text-white">Faith in the Crossfire</h3>
                 <p class="text-zinc-500 text-sm font-light uppercase tracking-widest">Series Premiere • Philosophical Theology</p>
             </div>
@@ -247,12 +203,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </div>
 
-    <!-- BOOKS SECTION -->
     <div id="books" class="tab-content max-w-7xl mx-auto px-6 pb-40">
         <h2 class="text-6xl md:text-[8rem] font-black tracking-tighter uppercase italic text-white mb-20">Books</h2>
         <div class="grid md:grid-cols-3 gap-12 text-left">
-            
-            <!-- HERMENEUTICS AS EPISTEMOLOGY -->
             <div class="group cursor-pointer">
                 <a href="https://www.amazon.com/Hermeneutics-Epistemology-Critical-Assessment-Epistemological-ebook/dp/B013FA63RA/" target="_blank" class="block">
                     <div class="bg-zinc-900 aspect-[3/4] mb-8 overflow-hidden border border-white/5 flex items-center justify-center hover:bg-zinc-800 transition-colors">
@@ -263,12 +216,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p class="text-zinc-500 text-sm mb-6 leading-relaxed">A critical assessment of the epistemological shifts in modern hermeneutics.</p>
                 <a href="https://www.amazon.com/Hermeneutics-Epistemology-Critical-Assessment-Epistemological-ebook/dp/B013FA63RA/" target="_blank" class="text-[10px] font-black uppercase tracking-widest py-3 px-6 border border-white/10 inline-block hover:bg-white hover:text-black transition-all">Order Now</a>
             </div>
-
-            <!-- DEFENDING INERRANCY -->
             <div class="group cursor-pointer">
                 <a href="https://www.amazon.com/Defending-Inerrancy-Affirming-Scripture-Generation-ebook/dp/B006CQ8I46/" target="_blank" class="block">
                     <div class="bg-zinc-900 aspect-[3/4] mb-8 overflow-hidden border border-white/5 flex items-center justify-center hover:bg-zinc-800 transition-colors">
-                        <!-- Space represented by %20 -->
                         <img src="assets/Defending%20Inerrancy.jpg" alt="Defending Inerrancy" class="w-full h-full object-cover">
                     </div>
                 </a>
@@ -276,8 +226,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p class="text-zinc-500 text-sm mb-6 leading-relaxed">Co-authored with Norman L. Geisler, defending the historical doctrine of the Bible.</p>
                 <a href="https://www.amazon.com/Defending-Inerrancy-Affirming-Scripture-Generation-ebook/dp/B006CQ8I46/" target="_blank" class="text-[10px] font-black uppercase tracking-widest py-3 px-6 border border-white/10 inline-block hover:bg-white hover:text-black transition-all">Order Now</a>
             </div>
-
-            <!-- SOLA FIDE -->
             <div class="group cursor-pointer">
                 <a href="https://www.amazon.com/Sola-Fide-Primer-Doctrine-Justification/dp/1717317820/" target="_blank" class="block">
                     <div class="bg-zinc-900 aspect-[3/4] mb-8 overflow-hidden border border-white/5 flex items-center justify-center hover:bg-zinc-800 transition-colors">
@@ -291,7 +239,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </div>
 
-    <!-- ABOUT SECTION -->
     <div id="about" class="tab-content max-w-7xl mx-auto px-6 pb-40">
         <h2 class="text-6xl md:text-[8rem] font-black tracking-tighter uppercase italic text-white mb-20">About</h2>
         <div class="max-w-4xl">
@@ -299,15 +246,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 "Defending the truth of Christianity in an age of skepticism requires intellectual rigor."
             </p>
             <div class="space-y-8 text-zinc-400 text-lg leading-relaxed">
-                <p>William (Bill) C. Roach, Ph.D. serves as Dean of the Norman L. Geisler School of Apologetics at Veritas International University and as Chair of Systematic Theology at Redeemer Seminary. A respected voice in philosophical theology and classical apologetics, Dr. Roach is an accomplished author, editor, and lecturer whose work engages the most pressing intellectual and cultural challenges facing Christianity today..</p>
-                <p>His scholarship has been featured in Christianity Today and WORLD Magazine, highlighting his contributions to evangelical thought and apologetics. In addition to his academic and writing endeavors, he has served as Past President of the International Society of Christian Apologetics, reflecting his leadership and influence within the field..</p>
+                <p>William (Bill) C. Roach, Ph.D. serves as Dean of the Norman L. Geisler School of Apologetics at Veritas International University and as Chair of Systematic Theology at Redeemer Seminary. A respected voice in philosophical theology and classical apologetics, Dr. Roach is an accomplished author, editor, and lecturer whose work engages the most pressing intellectual and cultural challenges facing Christianity today.</p>
+                <p>His scholarship has been featured in Christianity Today and WORLD Magazine, highlighting his contributions to evangelical thought and apologetics. In addition to his academic and writing endeavors, he has served as Past President of the International Society of Christian Apologetics, reflecting his leadership and influence within the field.</p>
                 <p>Dr. Roach is also the author and editor of numerous books and academic works, where he continues to defend the historic Christian faith with clarity, rigor, and conviction.</p>
             </div>
         </div>
     </div>
 </main>
 
-<!-- FOOTER -->
 <footer class="bg-black text-white pt-24 pb-12 border-t border-white/10">
     <div class="max-w-7xl mx-auto px-8">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-10 mb-20">
