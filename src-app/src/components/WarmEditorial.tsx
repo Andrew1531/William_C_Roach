@@ -19,21 +19,21 @@ const books = [
     title: "Hermeneutics as Epistemology",
     subtitle: "A critical assessment of epistemological shifts in modern hermeneutics",
     url: "https://www.amazon.com/Hermeneutics-Epistemology-Critical-Assessment-Epistemological-ebook/dp/B013FA63RA/",
-    mark: "H",
+    image: "Hermeneutics.jpg",
     eyebrow: "Interpretation · Knowledge",
   },
   {
     title: "Defending Inerrancy",
     subtitle: "Co-authored with Norman L. Geisler; a defense of the historical doctrine of Scripture",
     url: "https://www.amazon.com/Defending-Inerrancy-Affirming-Scripture-Generation-ebook/dp/B006CQ8I46/",
-    mark: "D",
+    image: "Defending Inerrancy.jpg",
     eyebrow: "Scripture · Apologetics",
   },
   {
     title: "Sola Fide",
     subtitle: "The history and defense of the doctrine of justification by faith alone",
     url: "https://www.amazon.com/Sola-Fide-Primer-Doctrine-Justification/dp/1717317820/",
-    mark: "S",
+    image: "Sola_Fide.jpg",
     eyebrow: "Theology · Reformation",
   },
 ];
@@ -226,11 +226,7 @@ export function WarmEditorial() {
             {books.map((book, index) => (
               <article className="we-book-card" key={book.title}>
                 <a className={`we-book-cover cover-${index + 1}`} href={book.url} target="_blank" rel="noopener noreferrer" aria-label={`View ${book.title} on Amazon`}>
-                  <span className="we-cover-top">WILLIAM C. ROACH</span>
-                  <span className="we-cover-mark">{book.mark}</span>
-                  <span className="we-cover-title">{book.title}</span>
-                  <span className="we-cover-rule" />
-                  <span className="we-cover-bottom">THEOLOGY & APOLOGETICS</span>
+                   <img src={`${import.meta.env.BASE_URL}assets/${encodeURIComponent(book.image)}`} alt={`${book.title} book cover`} loading="lazy" decoding="async" />
                 </a>
                 <div className="we-book-info">
                   <p className="we-overline">{book.eyebrow}</p>
@@ -291,7 +287,10 @@ export function WarmEditorial() {
           {navItems.map((item) => <a href={`#${item.id}`} key={item.id} onClick={(event) => { event.preventDefault(); navigate(item.id); }}>{item.label}</a>)}
           <a href="https://drbillroach.substack.com/" target="_blank" rel="noopener noreferrer">Substack <ExternalLink size={12} /></a>
         </div>
-        <span className="we-copyright">William C. Roach</span>
+        <span className="we-copyright">
+          William C. Roach
+          <span className="we-credit">Designed and built by <a href="https://ladmedia.co" target="_blank" rel="noopener noreferrer">LAD MEDIA</a></span>
+        </span>
       </footer>
     </div>
   );

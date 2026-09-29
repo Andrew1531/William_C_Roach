@@ -156,14 +156,14 @@
 .we-book-card { display: grid; grid-template-columns: minmax(112px, .76fr) 1fr; gap: 18px; align-items: start; }
 .we-book-cover {
   position: relative; aspect-ratio: .68; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 15px 12px; text-align: center; overflow: hidden; color: #f7efe2 !important;
+   padding: 0; text-align: center; overflow: hidden; color: #f7efe2 !important;
   background: #40483f; box-shadow: 5px 7px 0 #e1d8ca, 6px 8px 0 1px #c9bdac;
   transition: transform .25s ease, box-shadow .25s ease;
 }
 .we-book-cover:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: 7px 10px 0 #e1d8ca, 8px 11px 0 1px #c9bdac; }
 .cover-2 { background: #813f2e; }
 .cover-3 { background: #4d514d; }
-.we-book-cover::before { content: ""; position: absolute; inset: 8px; border: 1px solid rgb(239 223 195 / 44%); }
+.we-book-cover img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .we-cover-top, .we-cover-bottom { position: relative; font-size: 6px; letter-spacing: .15em; }
 .we-cover-mark { position: relative; margin: auto 0 9px; color: #e4bb82; font: italic 47px/.8 "Newsreader", Georgia, serif; }
 .we-cover-title { position: relative; max-width: 145px; font: 500 clamp(14px, 1.4vw, 20px)/1.03 "Newsreader", Georgia, serif; }
@@ -196,6 +196,9 @@
 .we-footer-nav { display: flex; align-items: center; gap: 20px; }
 .we-footer-nav a { font-size: 10px; }
 .we-copyright { color: #928a7d; font-size: 9px; }
+.we-credit { display: block; margin-top: 5px; color: #6e6b62; }
+.we-credit a { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.we-credit a:hover, .we-credit a:focus-visible { color: var(--we-amber); }
 
 @media (min-width: 1300px) {
   .we-hero { min-height: 670px; }
