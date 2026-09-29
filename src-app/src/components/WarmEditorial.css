@@ -146,6 +146,9 @@
 .we-video-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 25px; }
 .we-video-card { display: grid; grid-template-columns: 138px 1fr 20px; gap: 18px; align-items: center; padding: 12px; border: 1px solid var(--we-line); background: rgb(255 255 255 / 20%); }
 .we-small-embed { position: relative; aspect-ratio: 16/10; background: #d9d1c4; }
+.we-small-embed img { display: block; width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.we-video-card:hover { border-color: var(--we-amber); background: var(--we-card); }
+.we-video-card:focus-visible { outline: 2px solid var(--we-amber); outline-offset: 4px; }
 .we-video-card-copy .we-overline { font-size: 8px; }
 .we-video-card-copy h3 { margin: 5px 0 3px; font: 500 18px/1.15 "Newsreader", Georgia, serif; }
 .we-video-card-copy p { margin: 0; color: var(--we-muted); font-size: 10px; }

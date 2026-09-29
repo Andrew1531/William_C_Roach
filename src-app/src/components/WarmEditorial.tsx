@@ -210,9 +210,9 @@ export function WarmEditorial() {
           </div>
           <div className="we-video-list">
             {videos.map((video, index) => (
-              <article className="we-video-card" key={video.title}>
+              <a className="we-video-card" key={video.title} href="https://www.youtube.com/@DrBillRoach" target="_blank" rel="noopener noreferrer" aria-label={`${video.title} — visit Dr. Roach’s YouTube channel (opens in a new tab)`}>
                 <div className="we-small-embed">
-                  <iframe src={video.url} title={video.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                  <img src={`https://i.ytimg.com/vi/${new URL(video.url).pathname.split("/").pop()}/hqdefault.jpg`} alt="" loading="lazy" />
                 </div>
                 <div className="we-video-card-copy">
                   <span className="we-overline">Lecture 0{index + 1}</span>
@@ -220,7 +220,7 @@ export function WarmEditorial() {
                   <p>{video.subtitle}</p>
                 </div>
                 <Video className="we-video-icon" size={19} aria-hidden="true" />
-              </article>
+              </a>
             ))}
           </div>
         </section>
