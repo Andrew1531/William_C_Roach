@@ -1,0 +1,11 @@
+# Dr. William C. Roach
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /draft/
+Disallow: /staging/
+
+Sitemap: https://williamcroach.com/sitemap.xml
+
+# Site information for AI tools: https://williamcroach.com/llms.txt

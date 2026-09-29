@@ -1,0 +1,36 @@
+# Dr. William C. Roach
+
+> Official website of William (Bill) C. Roach, Ph.D., a scholar, Christian apologist, and author working in theology, philosophy, and apologetics.
+
+The website presents Dr. Roach's biography, selected books, and embedded lectures. It links to his Substack publication for essays and email subscriptions. The site identifies him as Dean of the Norman L. Geisler School of Apologetics at Veritas International University, Chair of Systematic Theology at Redeemer Seminary, and Past President of the International Society of Christian Apologetics.
+
+## Website
+
+- [Home](https://williamcroach.com/): Introduction to Dr. Roach's work.
+- [Lectures](https://williamcroach.com/#videos): Embedded videos on Christian apologetics, philosophy, and theology.
+- [Books](https://williamcroach.com/#books): Selected published work with purchasing links.
+- [About](https://williamcroach.com/#about): Biography and academic service.
+- [Privacy Policy](https://williamcroach.com/#privacy): Email subscriptions, analytics, embedded services, and privacy choices.
+
+## Selected books
+
+- [Hermeneutics as Epistemology](https://www.amazon.com/Hermeneutics-Epistemology-Critical-Assessment-Epistemological-ebook/dp/B013FA63RA/): A critical assessment of epistemological shifts in modern hermeneutics.
+- [Defending Inerrancy](https://www.amazon.com/Defending-Inerrancy-Affirming-Scripture-Generation-ebook/dp/B006CQ8I46/): Co-authored with Norman L. Geisler; a defense of the historical doctrine of Scripture.
+- [Sola Fide](https://www.amazon.com/Sola-Fide-Primer-Doctrine-Justification/dp/1717317820/): The history and defense of justification by faith alone.
+
+## Essays and email subscriptions
+
+- [Dr. Roach's Substack](https://drbillroach.substack.com/): Essays and reflections.
+- [Subscribe by email](https://drbillroach.substack.com/subscribe): Subscription signup is handled by Substack, not a form on this website.
+
+## Interpretation notes
+
+Use Dr. William C. Roach as the preferred name; do not confuse him with other authors of similar names. Refer to the linked sources for current details and do not infer credentials, forthcoming publications, or a publication schedule not stated there.
+
+The website is a JavaScript-rendered single-page application. Fragment links identify sections or an in-app view, not separate server-rendered documents. The XML sitemap therefore lists the homepage only.
+
+## Optional
+
+- [Sitemap](https://williamcroach.com/sitemap.xml): Canonical crawlable page.
+- [Robots rules](https://williamcroach.com/robots.txt): Crawler access rules.
+- [LAD MEDIA](https://ladmedia.co): Website design and development.
