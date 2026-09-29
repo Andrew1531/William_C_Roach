@@ -269,12 +269,13 @@ export function WarmEditorial() {
 
         <section className="we-subscribe">
           <div className="we-subscribe-mark"><BookOpen size={20} /></div>
-          <p className="we-overline">Further reading</p>
-          <h2>Keep the conversation <em>going.</em></h2>
-          <p>Read Dr. Roach’s essays and reflections on faith, theology, and the modern mind.</p>
-          <a className="we-button we-button-dark" href="https://drbillroach.substack.com/" target="_blank" rel="noopener noreferrer">
-            Visit the Substack <ArrowUpRight size={16} />
+          <p className="we-overline">Join the conversation</p>
+          <h2>Thoughtful faith.<br /><em>Delivered to your inbox.</em></h2>
+          <p>Sign up to receive Dr. Roach’s essays and reflections on faith, theology, and the modern mind by email.</p>
+          <a className="we-button we-button-dark" href="https://drbillroach.substack.com/subscribe" target="_blank" rel="noopener noreferrer">
+            Subscribe by email <ArrowUpRight size={16} />
           </a>
+          <p className="we-signup-note">Enter your email on Substack to subscribe. Unsubscribe anytime.</p>
         </section>
       </main>
 
