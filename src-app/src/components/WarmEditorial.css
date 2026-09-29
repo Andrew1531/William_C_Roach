@@ -200,6 +200,14 @@
 .we-credit { display: block; margin-top: 5px; color: #6e6b62; }
 .we-credit a { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 .we-credit a:hover, .we-credit a:focus-visible { color: var(--we-amber); }
+.we-footer-nav { flex-wrap: wrap; }
+.we-privacy { max-width: 800px; min-height: 100vh; margin: auto; padding: 48px 24px 80px; }
+.we-privacy .we-overline { margin-top: 42px; }
+.we-privacy h1 { font: 400 clamp(42px, 8vw, 64px)/1.1 "Newsreader", Georgia, serif; margin: 14px 0; }
+.we-privacy h2 { font: 500 28px/1.2 "Newsreader", Georgia, serif; margin: 32px 0 12px; }
+.we-privacy p { line-height: 1.8; }
+.we-privacy p a { color: var(--we-deep); text-decoration: underline; text-underline-offset: 3px; }
+.we-privacy .we-button { margin-top: 24px; }
 
 @media (min-width: 1300px) {
   .we-hero { min-height: 670px; }

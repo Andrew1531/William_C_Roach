@@ -11,6 +11,7 @@ import {
   X,
 } from "lucide-react";
 import "./WarmEditorial.css";
+import PrivacyPolicy from "./PrivacyPolicy";
 
 type Section = "home" | "videos" | "books" | "about";
 
@@ -61,10 +62,18 @@ const navItems: { id: Section; label: string }[] = [
 export function WarmEditorial() {
   const [active, setActive] = useState<Section>("home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [privacyOpen, setPrivacyOpen] = useState(() => window.location.hash === "#privacy");
+
+  useEffect(() => {
+    document.title = privacyOpen ? "Privacy Policy | Dr. William C. Roach" : "Dr. William C. Roach";
+    window.scrollTo(0, 0);
+  }, [privacyOpen]);
 
   useEffect(() => {
     const syncHash = () => {
       const hash = window.location.hash.slice(1) as Section;
+      setPrivacyOpen(window.location.hash === "#privacy");
+      setMenuOpen(false);
       if (navItems.some((item) => item.id === hash)) setActive(hash);
     };
     syncHash();
@@ -78,6 +87,8 @@ export function WarmEditorial() {
     window.location.hash = section;
     document.getElementById(section)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+
+  if (privacyOpen) return <PrivacyPolicy />;
 
   return (
     <div className="warm-editorial" id="top">
@@ -285,6 +296,7 @@ export function WarmEditorial() {
           <span><strong>William C. Roach</strong><small>Faith seeking understanding.</small></span>
         </a>
         <div className="we-footer-nav">
+          <a href="#privacy">Privacy Policy</a>
           {navItems.map((item) => <a href={`#${item.id}`} key={item.id} onClick={(event) => { event.preventDefault(); navigate(item.id); }}>{item.label}</a>)}
           <a href="https://drbillroach.substack.com/" target="_blank" rel="noopener noreferrer">Substack <ExternalLink size={12} /></a>
         </div>
