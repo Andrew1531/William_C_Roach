@@ -158,16 +158,18 @@ export function WarmEditorial() {
             </div>
             <div className="we-hero-note"><span className="we-note-rule" />Scholarship in service of the church</div>
           </div>
-          <div className="we-hero-art" aria-label="Editorial title composition">
-            <div className="we-art-paper">
-              <span className="we-art-label">FAITH & REASON</span>
-              <div className="we-art-orbit we-orbit-one" />
-              <div className="we-art-orbit we-orbit-two" />
-              <div className="we-art-core">Truth<br /><i>seeking</i></div>
-              <span className="we-art-index">WCR&nbsp; / &nbsp;01</span>
-              <span className="we-art-side">THE LIFE OF THE MIND</span>
+          <div className="we-hero-book">
+            <a className="we-hero-book-link" href="https://www.amazon.com/dp/1947929372" target="_blank" rel="noopener noreferrer" aria-label="View Faith in the Crossfire on Amazon (opens in a new tab)">
+              <img src={`${import.meta.env.BASE_URL}assets/faith-in-the-crossfire.png`} width={572} height={860} alt="Faith in the Crossfire: When a Dialectical Revolution Targets Christianity, by William C. Roach" fetchPriority="high" />
+            </a>
+            <a className="we-book-link" href="https://www.amazon.com/dp/1947929372" target="_blank" rel="noopener noreferrer">View book on Amazon <ArrowUpRight size={15} /></a>
+          </div>
+          <div className="we-featured-book-copy">
+            <div>
+              <p className="we-overline">Featured book</p>
+              <h2>Faith in the <em>Crossfire</em></h2>
             </div>
-            <div className="we-art-caption"><span>01</span><span>Ideas examined with care.</span></div>
+            <p>Faith in the Crossfire explains this struggle with clarity and depth. William C. Roach traces the philosophical and theological development of dialectical thought, examines how it operates within contemporary culture and the church, and exposes its consequences for Christian doctrine and practice. He then presents a constructive defense of objective truth, sound reason, divine revelation, biblical authority, and the historic Christian faith. Readers will come away better equipped to recognize the ideas reshaping Christianity, understand where those ideas originated, and defend the truth revealed in Jesus Christ, the eternal Logos.</p>
           </div>
         </section>
 
