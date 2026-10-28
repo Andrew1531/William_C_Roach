@@ -181,6 +181,23 @@ export function WarmEditorial() {
           <div><span>03</span> Biblical studies</div>
         </div>
 
+        <section className="we-study-guide" aria-labelledby="we-study-guide-title">
+          <div className="we-study-guide-inner">
+            <div className="we-study-guide-icon" aria-hidden="true"><BookOpen size={28} strokeWidth={1.5} /></div>
+            <div className="we-study-guide-copy">
+              <p className="we-overline">For teachers & group leaders</p>
+              <h2 id="we-study-guide-title">Read together. <em>Go deeper.</em></h2>
+              <p>A companion study guide for teachers and group leaders working through <i>Faith in the Crossfire</i>. Bring the book into your classroom, church, or small group.</p>
+            </div>
+            <div className="we-study-guide-action">
+              <a className="we-button we-button-dark" href={`${import.meta.env.BASE_URL}assets/faith-in-the-crossfire-study-guide.pdf`} download="Faith-in-the-Crossfire-Study-Guide.pdf" aria-describedby="we-study-guide-status">
+                Download the study guide <ArrowDown size={16} aria-hidden="true" />
+              </a>
+              <p id="we-study-guide-status">PDF · 29 pages · 636 KB</p>
+            </div>
+          </div>
+        </section>
+
         <section className="we-feature section-anchor" id="videos">
           <div className="we-section-heading">
             <div>
