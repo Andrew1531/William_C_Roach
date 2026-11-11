@@ -62,10 +62,10 @@ const navItems: { id: Section; label: string }[] = [
 export function WarmEditorial() {
   const [active, setActive] = useState<Section>("home");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [privacyOpen, setPrivacyOpen] = useState(() => window.location.hash === "#privacy");
+  const [privacyOpen, setPrivacyOpen] = useState(false);
 
   useEffect(() => {
-    document.title = privacyOpen ? "Privacy Policy | Dr. William C. Roach" : "Dr. William C. Roach";
+    document.title = privacyOpen ? "Privacy Policy | Dr. William C. Roach" : "Dr. William C. Roach | Christian Apologetics & Theology";
     window.scrollTo(0, 0);
   }, [privacyOpen]);
 
@@ -95,7 +95,7 @@ export function WarmEditorial() {
       <header className="we-header">
         <div className="we-nav-inner">
           <a className="we-brand" href="#home" onClick={(event) => { event.preventDefault(); navigate("home"); }} aria-label="William C. Roach home">
-            <span className="we-seal" aria-hidden="true">R</span>
+            <img className="we-seal" src={`${import.meta.env.BASE_URL}favicon.png`} alt="" width={38} height={38} />
             <span className="we-brand-copy">
               <strong>William C. Roach</strong>
               <small>Scholar · Apologist · Author</small>
@@ -181,11 +181,42 @@ export function WarmEditorial() {
           <div><span>03</span> Biblical studies</div>
         </div>
 
+        <section className="we-study-guide we-booklet" id="booklet" aria-labelledby="we-booklet-title">
+          <div className="we-study-guide-inner">
+            <div className="we-study-guide-icon" aria-hidden="true"><BookOpen size={28} strokeWidth={1.5} /></div>
+            <div className="we-study-guide-copy">
+              <p className="we-overline">A shorter introduction · Study guide included</p>
+              <h2 id="we-booklet-title">Start with the <em>main message.</em></h2>
+              <p>Explore the main message of <i>Faith in the Crossfire</i> in a shorter booklet, with the study guide included. An accessible starting point for readers, teachers, and group leaders before exploring the full book.</p>
+            </div>
+            <div className="we-study-guide-action">
+              <a className="we-button we-button-dark" href="https://www.amazon.com/Revelation-Revolution-Dialectics-Cultural-Christian/dp/B0HQ5DHCVH" target="_blank" rel="noopener noreferrer">
+                Purchase the booklet on Amazon <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+              <p>Booklet with study guide · Opens Amazon in a new tab</p>
+            </div>
+          </div>
+          <div className="we-booklet-covers" aria-label="Revelation or Revolution booklet covers">
+            <figure>
+              <a href={`${import.meta.env.BASE_URL}assets/revelation-or-revolution-front.png`} target="_blank" rel="noopener noreferrer" aria-label="View the Revelation or Revolution front cover at full size (opens in a new tab)">
+                <img src={`${import.meta.env.BASE_URL}assets/revelation-or-revolution-front.png`} alt="Front cover of Revelation or Revolution: Dialectics, Cultural Marxism, and the Christian Doctrine of Revelation by William C. Roach" width={566} height={910} loading="lazy" decoding="async" />
+              </a>
+              <figcaption>Front cover <span>Click to enlarge</span></figcaption>
+            </figure>
+            <figure>
+              <a href={`${import.meta.env.BASE_URL}assets/revelation-or-revolution-back.png`} target="_blank" rel="noopener noreferrer" aria-label="View the Revelation or Revolution back cover at full size (opens in a new tab)">
+                <img src={`${import.meta.env.BASE_URL}assets/revelation-or-revolution-back.png`} alt="Back cover of Revelation or Revolution, featuring the book overview headed Can We Know What God Has Said? and the author biography" width={574} height={902} loading="lazy" decoding="async" />
+              </a>
+              <figcaption>Back cover <span>Click to enlarge</span></figcaption>
+            </figure>
+          </div>
+        </section>
+
         <section className="we-study-guide" aria-labelledby="we-study-guide-title">
           <div className="we-study-guide-inner">
             <div className="we-study-guide-icon" aria-hidden="true"><BookOpen size={28} strokeWidth={1.5} /></div>
             <div className="we-study-guide-copy">
-              <p className="we-overline">For teachers & group leaders</p>
+              <p className="we-overline">Free PDF · For teachers & group leaders</p>
               <h2 id="we-study-guide-title">Read together. <em>Go deeper.</em></h2>
               <p>A companion study guide for teachers and group leaders working through <i>Faith in the Crossfire</i>. Bring the book into your classroom, church, or small group.</p>
             </div>
@@ -193,7 +224,7 @@ export function WarmEditorial() {
               <a className="we-button we-button-dark" href={`${import.meta.env.BASE_URL}assets/faith-in-the-crossfire-study-guide.pdf`} download="Faith-in-the-Crossfire-Study-Guide.pdf" aria-describedby="we-study-guide-status">
                 Download the study guide <ArrowDown size={16} aria-hidden="true" />
               </a>
-              <p id="we-study-guide-status">PDF · 29 pages · 636 KB</p>
+              <p id="we-study-guide-status">Free PDF · 29 pages · 636 KB · No purchase required</p>
             </div>
           </div>
         </section>
@@ -311,7 +342,7 @@ export function WarmEditorial() {
 
       <footer className="we-footer">
         <a className="we-footer-brand" href="#home" onClick={(event) => { event.preventDefault(); navigate("home"); }}>
-          <span className="we-seal" aria-hidden="true">R</span>
+          <img className="we-seal" src={`${import.meta.env.BASE_URL}favicon.png`} alt="" width={31} height={31} />
           <span><strong>William C. Roach</strong><small>Faith seeking understanding.</small></span>
         </a>
         <div className="we-footer-nav">

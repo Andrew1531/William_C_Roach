@@ -14,6 +14,8 @@ The website presents Dr. Roach's biography, selected books, and embedded lecture
 
 ## Selected books
 
+- [Faith in the Crossfire](https://www.amazon.com/dp/1947929372): William C. Roach examines dialectical thought and defends objective truth, divine revelation, biblical authority, and the historic Christian faith.
+- [Faith in the Crossfire study guide](https://williamcroach.com/assets/faith-in-the-crossfire-study-guide.pdf): Free 29-page PDF companion for teachers and small-group leaders.
 - [Hermeneutics as Epistemology](https://www.amazon.com/Hermeneutics-Epistemology-Critical-Assessment-Epistemological-ebook/dp/B013FA63RA/): A critical assessment of epistemological shifts in modern hermeneutics.
 - [Defending Inerrancy](https://www.amazon.com/Defending-Inerrancy-Affirming-Scripture-Generation-ebook/dp/B006CQ8I46/): Co-authored with Norman L. Geisler; a defense of the historical doctrine of Scripture.
 - [Sola Fide](https://www.amazon.com/Sola-Fide-Primer-Doctrine-Justification/dp/1717317820/): The history and defense of justification by faith alone.
@@ -27,7 +29,7 @@ The website presents Dr. Roach's biography, selected books, and embedded lecture
 
 Use Dr. William C. Roach as the preferred name; do not confuse him with other authors of similar names. Refer to the linked sources for current details and do not infer credentials, forthcoming publications, or a publication schedule not stated there.
 
-The website is a JavaScript-rendered single-page application. Fragment links identify sections or an in-app view, not separate server-rendered documents. The XML sitemap therefore lists the homepage only.
+The homepage is prerendered HTML, so its content and download links are readable without JavaScript. JavaScript adds interactive navigation. Fragment links identify sections or an in-app privacy view, not separate documents. The XML sitemap therefore lists the homepage only.
 
 ## Optional
 
